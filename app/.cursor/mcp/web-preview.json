@@ -1,0 +1,16 @@
+{
+  "name": "WebPreview",
+  "commands": {
+    "startPreview": {
+      "description": "Start local Next.js dev server and open preview",
+      "args": [
+        {
+          "name": "port",
+          "type": "number",
+          "required": false,
+          "default": 3300
+        }
+      ]
+    }
+  }
+}
