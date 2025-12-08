@@ -80,9 +80,11 @@ postgresql://username:password@hostname:5432/database_name?schema=public
 1. 连接你的 GitHub 仓库
 2. 设置以下配置：
    - **Build Command**: `npm install && npm run db:generate && npm run db:push && npm run db:seed`
-   - **Start Command**: `npm start`
+   - **Start Command**: `npm start`（使用自定义 server.js，自动绑定到 PORT 环境变量）
    - **Environment**: `Node`
-   - **Port**: Render 会自动设置 `PORT` 环境变量，代码已支持自动使用
+   - **Port**: Render 会自动设置 `PORT` 环境变量（通常是 10000），server.js 会自动读取并绑定
+
+**注意**: 项目已包含 `server.js` 启动脚本，确保服务正确绑定到 Render 指定的端口（0.0.0.0:PORT）
 
 ### 3. 设置环境变量
 
@@ -163,6 +165,12 @@ A: 确保图片文件已提交到 Git 仓库的 `public/images/` 目录。
 
 ### Q: 部署后需要重新运行 seed 吗？
 A: 是的，首次部署需要运行 `npm run db:seed` 来创建初始数据。
+
+### Q: 端口扫描超时错误（Port scan timeout）？
+A: 项目已包含 `server.js` 启动脚本，会自动绑定到 Render 的 `PORT` 环境变量（通常是 10000）。确保：
+- 使用 `npm start` 作为启动命令（不要使用 `next start`）
+- `server.js` 文件已提交到 Git 仓库
+- Render 会自动设置 `PORT` 环境变量，无需手动配置
 
 ---
 
