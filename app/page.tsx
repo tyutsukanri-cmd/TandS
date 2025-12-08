@@ -17,6 +17,7 @@ interface Product {
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
 
   useEffect(() => {
@@ -25,12 +26,19 @@ export default function Home() {
 
   const fetchProducts = async () => {
     try {
+      setError(null)
       const res = await fetch('/api/products')
       if (res.ok) {
         const data = await res.json()
         setProducts(data)
+      } else {
+        const errorData = await res.json().catch(() => ({ error: '未知错误' }))
+        setError(errorData.error || `请求失败: ${res.status}`)
+        console.error('获取商品列表失败:', errorData)
       }
-    } catch (error) {
+    } catch (error: any) {
+      const errorMessage = error.message || '网络错误，请稍后重试'
+      setError(errorMessage)
       console.error('获取商品列表失败:', error)
     } finally {
       setLoading(false)
@@ -44,6 +52,17 @@ export default function Home() {
         <h1 style={{ marginBottom: '30px', fontSize: '32px' }}>商品展示</h1>
         {loading ? (
           <div style={{ textAlign: 'center', padding: '40px' }}>加载中...</div>
+        ) : error ? (
+          <div style={{ textAlign: 'center', padding: '40px' }}>
+            <div style={{ color: '#dc3545', marginBottom: '10px' }}>❌ {error}</div>
+            <button 
+              onClick={fetchProducts}
+              className="btn btn-primary"
+              style={{ marginTop: '10px' }}
+            >
+              重试
+            </button>
+          </div>
         ) : products.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px' }}>暂无商品</div>
         ) : (

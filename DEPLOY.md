@@ -80,11 +80,14 @@ postgresql://username:password@hostname:5432/database_name?schema=public
 1. 连接你的 GitHub 仓库
 2. 设置以下配置：
    - **Build Command**: `npm install && npm run db:generate && npm run db:push && npm run db:seed`
+     - ⚠️ **重要**: 必须包含数据库初始化步骤，否则会出现"表不存在"的错误
    - **Start Command**: `npm start`（使用自定义 server.js，自动绑定到 PORT 环境变量）
    - **Environment**: `Node`
    - **Port**: Render 会自动设置 `PORT` 环境变量（通常是 10000），server.js 会自动读取并绑定
 
-**注意**: 项目已包含 `server.js` 启动脚本，确保服务正确绑定到 Render 指定的端口（0.0.0.0:PORT）
+**注意**: 
+- 项目已包含 `server.js` 启动脚本，确保服务正确绑定到 Render 指定的端口（0.0.0.0:PORT）
+- 如果部署后出现"表不存在"错误，说明数据库未初始化，需要运行 `npm run db:init` 或手动执行初始化步骤
 
 ### 3. 设置环境变量
 
@@ -96,18 +99,43 @@ DATABASE_URL=你的数据库连接字符串
 NODE_ENV=production
 ```
 
-### 4. 部署后初始化数据库
+### 4. 部署后初始化数据库（如果 Build Command 未包含）
 
-如果使用 PostgreSQL，部署后需要：
+如果 Build Command 中没有包含数据库初始化，或者部署后出现"表不存在"错误：
 
-1. 通过 Render Shell 或本地连接数据库
-2. 运行数据库迁移：
-   ```bash
-   npm run db:push
-   npm run db:seed
-   ```
+#### 方法 A: 使用初始化脚本（推荐）
 
-或者修改 Build Command 包含这些步骤。
+在 Render Shell 中运行：
+
+```bash
+npm run db:init
+```
+
+这个命令会自动执行：
+1. 生成 Prisma 客户端
+2. 创建数据库表
+3. 填充初始数据
+4. 验证初始化结果
+
+#### 方法 B: 手动执行步骤
+
+在 Render Shell 中依次运行：
+
+```bash
+npm run db:generate
+npm run db:push
+npm run db:seed
+```
+
+#### 方法 C: 修改 Build Command（推荐用于新部署）
+
+在 Render Dashboard 的 Web Service 设置中，修改 **Build Command** 为：
+
+```bash
+npm install && npm run db:generate && npm run db:push && npm run db:seed
+```
+
+然后重新部署。
 
 ---
 

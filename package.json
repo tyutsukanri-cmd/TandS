@@ -11,7 +11,8 @@
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "db:init": "node scripts/init-db.js"
   },
   "dependencies": {
     "next": "^14.0.0",
