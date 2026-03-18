@@ -136,16 +136,7 @@ export default function AdminDashboardPage() {
               查看用户
             </Link>
           </div>
-          <div className="card">
-            <h2 style={{ marginBottom: '20px' }}>商品管理</h2>
-            <p style={{ color: '#666', marginBottom: '20px' }}>
-              管理可下单商品，配置颜色、图片和尺码表
-            </p>
-            <Link href="/admin/products" className="btn btn-primary">
-              进入商品管理
-            </Link>
-          </div>
-        </div>
+                  </div>
       </div>
   )
 }
