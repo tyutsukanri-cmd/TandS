@@ -171,7 +171,9 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 型崩れしにくく、荷物を入れてもきれいなシルエットを保ちます。
 
 ■ カラー
-ナチュラル
+ブラック
+ホワイト
+
 
 用途：通勤、通学、ショッピング、エコバッグ
 ■ 大容量で実用的
@@ -189,7 +191,7 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 重い荷物を入れても安心して持ち運びできます。
 
 ■ サイズについて
-35*40*10㎝　（底あり）
+35*35㎝　（底なし）
 製品は手作業で測定しているため、1〜2cm程度の誤差が生じる場合がございます。予めご了承ください。
 
 ■ 注意事項
@@ -269,7 +271,7 @@ const PRODUCT_TABS: ProductTab[] = [
       ホワイト: ['/07bao1/bai1.png'],
       ブラック: ['/07bao1/hei1.png'],
     },
-    bottomImage: '/07bao1/bai1.png',
+    bottomImage: '/07bao1/wudi1.jpg',
   },
 ]
 
