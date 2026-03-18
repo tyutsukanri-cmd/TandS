@@ -46,12 +46,12 @@ input, select, textarea {
 }
 
 .btn-primary {
-  background-color: #0070f3;
+  background-color: #f4a261;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #0051cc;
+  background-color: #e98b2a;
 }
 
 .btn-secondary {

@@ -12,6 +12,7 @@ export async function GET() {
       ...product,
       sizes: JSON.parse(product.sizes),
       colors: JSON.parse(product.colors),
+      colorImages: product.colorImages ? JSON.parse(product.colorImages) : {},
     }))
 
     return NextResponse.json(productsWithParsedData)

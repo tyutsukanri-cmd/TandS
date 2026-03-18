@@ -19,7 +19,7 @@ model User {
   companyName  String?   @map("company_name")
   role         String    @default("user") // "user" or "admin"
   createdAt    DateTime  @default(now()) @map("created_at")
-  orders       Order[]
+  orders       OrderGroup[]
 
   @@map("users")
 }
@@ -31,24 +31,73 @@ model Product {
   imageUrl    String?   @map("image_url")
   sizes       String    // JSON string: ["S","M","L","XL","XXL"]
   colors      String    // JSON string: ["Black","White","Red","Navy"]
+  // JSON string: { "ホワイト": ["/path/a.png","/path/b.png"], "ブラック": [...] }
+  colorImages String?   @map("color_images")
+  // 尺码表图片
+  sizeChartUrl String?  @map("size_chart_url")
+  // 商品印图展示用：正面 / 背面（PNG）
+  printFrontUrl String? @map("print_front_url")
+  printBackUrl  String? @map("print_back_url")
   createdAt   DateTime  @default(now()) @map("created_at")
-  orders      Order[]
+  orderItems  OrderItem[]
 
   @@map("products")
 }
 
-model Order {
+model OrderGroup {
   id          Int      @id @default(autoincrement())
   userId      Int      @map("user_id")
-  productId   Int      @map("product_id")
+  // 订单名：用户名+日期-序号，例如 "alice20260312-1"
+  orderNumber String   @unique @map("order_number")
+  // 订单日期（yyyyMMdd），用于按日生成序号与筛选
+  orderDate   String   @map("order_date")
+  sequence    Int      @map("sequence")
+  // 订单图片文件夹（位于 public/uploaded/<username>/<folderName>）
+  folderName  String   @map("folder_name")
+  createdAt   DateTime @default(now()) @map("created_at")
+  user        User     @relation(fields: [userId], references: [id])
+  items       OrderItem[]
+
+  @@index([userId, orderDate])
+  @@map("order_groups")
+}
+
+model OrderItem {
+  id          Int      @id @default(autoincrement())
+  orderGroupId Int     @map("order_group_id")
+  productId   Int?     @map("product_id")
   productName String   @map("product_name")
   size        String
   color       String
   quantity    Int
+  note        String?  @map("note")
+  image1Path  String?  @map("image1_path")
+  image1Pos   String?  @map("image1_pos")
+  image2Path  String?  @map("image2_path")
+  image2Pos   String?  @map("image2_pos")
+  image3Path  String?  @map("image3_path")
+  image3Pos   String?  @map("image3_pos")
+  image4Path  String?  @map("image4_path")
+  image4Pos   String?  @map("image4_pos")
   createdAt   DateTime @default(now()) @map("created_at")
-  user        User     @relation(fields: [userId], references: [id])
-  product     Product  @relation(fields: [productId], references: [id])
 
-  @@map("orders")
+  orderGroup OrderGroup @relation(fields: [orderGroupId], references: [id])
+  product    Product?   @relation(fields: [productId], references: [id])
+
+  @@index([orderGroupId])
+  @@map("order_items")
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  lastName  String   @map("last_name")
+  firstName String   @map("first_name")
+  email     String   @map("email")
+  content   String   @map("content")
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([isRead, createdAt])
+  @@map("contact_messages")
 }
 

@@ -6,17 +6,24 @@ export async function GET(request: NextRequest) {
   try {
     await requireAdmin(request)
 
-    const orders = await prisma.order.findMany({
+    const { searchParams } = new URL(request.url)
+    const start = searchParams.get('start') || ''
+    const end = searchParams.get('end') || ''
+    const sort = (searchParams.get('sort') || 'desc').toLowerCase() === 'asc' ? 'asc' : 'desc'
+
+    const where: any = {}
+    if (start || end) {
+      where.orderDate = {}
+      if (start) where.orderDate.gte = start
+      if (end) where.orderDate.lte = end
+    }
+
+    const orders = await prisma.orderGroup.findMany({
+      where,
       include: {
-        user: {
-          select: {
-            username: true,
-            companyName: true,
-          },
-        },
-        product: true,
+        user: { select: { username: true, companyName: true } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: sort as any },
     })
 
     return NextResponse.json(orders)

@@ -7,30 +7,32 @@ export async function GET(request: NextRequest) {
   try {
     await requireAdmin(request)
 
-    const orders = await prisma.order.findMany({
+    const orders = await prisma.orderGroup.findMany({
       include: {
-        user: {
-          select: {
-            username: true,
-            companyName: true,
-          },
-        },
-        product: true,
+        user: { select: { username: true, companyName: true } },
+        items: true,
       },
       orderBy: { createdAt: 'desc' },
     })
 
     // 准备Excel数据
-    const excelData = orders.map((order: any) => ({
-      订单ID: order.id,
-      用户名: order.user.username,
-      公司名: order.user.companyName || '',
-      商品名: order.productName,
-      尺码: order.size,
-      颜色: order.color,
-      数量: order.quantity,
-      下单时间: new Date(order.createdAt).toLocaleString('zh-CN'),
-    }))
+    const excelData = orders.flatMap((order: any) =>
+      (order.items || []).map((it: any) => ({
+        订单名: order.orderNumber,
+        用户名: order.user.username,
+        公司名: order.user.companyName || '',
+        下单时间: new Date(order.createdAt).toLocaleString('zh-CN'),
+        商品名: it.productName,
+        尺码: it.size,
+        颜色: it.color,
+        数量: it.quantity,
+        印图位置1: it.image1Pos || '',
+        印图位置2: it.image2Pos || '',
+        印图位置3: it.image3Pos || '',
+        印图位置4: it.image4Pos || '',
+        备注: it.note || '',
+      }))
+    )
 
     // 创建工作簿
     const worksheet = XLSX.utils.json_to_sheet(excelData)

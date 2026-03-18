@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('')
@@ -35,40 +34,38 @@ export default function LoginPage() {
         }
         router.refresh()
       } else {
-        setError(data.error || '登录失败')
+        setError(data.error || 'ログインに失敗しました')
       }
     } catch (error) {
-      setError('网络错误，请稍后重试')
+      setError('ネットワークエラーが発生しました')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container" style={{ maxWidth: '400px', marginTop: '50px' }}>
+    <div className="container" style={{ maxWidth: '400px', marginTop: '50px' }}>
         <div className="card">
-          <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>用户登录</h1>
+          <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>ログイン</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>用户名</label>
+              <label>ユーザー名</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                placeholder="请输入用户名"
+                placeholder="ユーザー名を入力してください"
               />
             </div>
             <div className="form-group">
-              <label>密码</label>
+              <label>パスワード</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="请输入密码"
+                placeholder="パスワードを入力してください"
               />
             </div>
             {error && <div className="error-message">{error}</div>}
@@ -78,23 +75,17 @@ export default function LoginPage() {
               style={{ width: '100%', marginTop: '10px' }}
               disabled={loading}
             >
-              {loading ? '登录中...' : '登录'}
+              {loading ? 'ログイン中...' : 'ログイン'}
             </button>
           </form>
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <span style={{ color: '#666' }}>还没有账号？</span>{' '}
+            <span style={{ color: '#666' }}>アカウントがありませんか？</span>{' '}
             <Link href="/register" style={{ color: '#0070f3' }}>
-              立即注册
+              新規登録
             </Link>
-          </div>
-          <div style={{ marginTop: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '4px', fontSize: '14px' }}>
-            <strong>测试账号：</strong><br />
-            管理员：admin / admin<br />
-            普通用户：请先注册
           </div>
         </div>
       </div>
-    </>
   )
 }
 

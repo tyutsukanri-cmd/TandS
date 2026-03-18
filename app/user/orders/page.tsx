@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
 
 interface Order {
   id: number
@@ -47,19 +46,14 @@ export default function UserOrdersPage() {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
-          加载中...
-        </div>
-      </>
+      <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
+        加载中...
+      </div>
     )
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container" style={{ marginTop: '30px' }}>
+    <div className="container" style={{ marginTop: '30px' }}>
         <h1 style={{ marginBottom: '30px' }}>我的订单</h1>
         {error ? (
           <div className="error-message">{error}</div>
@@ -99,7 +93,6 @@ export default function UserOrdersPage() {
           </div>
         )}
       </div>
-    </>
   )
 }
 

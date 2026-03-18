@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -42,24 +41,22 @@ export default function RegisterPage() {
         router.push('/')
         router.refresh()
       } else {
-        setError(data.error || '注册失败')
+        setError(data.error || '登録に失敗しました')
       }
     } catch (error) {
-      setError('网络错误，请稍后重试')
+      setError('ネットワークエラーが発生しました')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container" style={{ maxWidth: '500px', marginTop: '50px' }}>
+    <div className="container" style={{ maxWidth: '500px', marginTop: '50px' }}>
         <div className="card">
-          <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>用户注册</h1>
+          <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>ユーザー登録</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>用户名 *</label>
+              <label>ユーザー名 *</label>
               <input
                 type="text"
                 name="username"
@@ -67,11 +64,11 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 required
                 minLength={3}
-                placeholder="至少3个字符"
+                placeholder="少なくとも3文字"
               />
             </div>
             <div className="form-group">
-              <label>密码 *</label>
+              <label>パスワード *</label>
               <input
                 type="password"
                 name="password"
@@ -79,37 +76,37 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 required
                 minLength={6}
-                placeholder="至少6个字符"
+                placeholder="少なくとも6文字"
               />
             </div>
             <div className="form-group">
-              <label>联系方式</label>
+              <label>連絡先</label>
               <input
                 type="text"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="手机号码（可选）"
+                placeholder="電話番号（任意）"
               />
             </div>
             <div className="form-group">
-              <label>邮箱</label>
+              <label>メールアドレス</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="邮箱地址（可选）"
+                placeholder="メールアドレス（任意）"
               />
             </div>
             <div className="form-group">
-              <label>公司名</label>
+              <label>会社名</label>
               <input
                 type="text"
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
-                placeholder="公司名称（可选）"
+                placeholder="会社名（任意）"
               />
             </div>
             {error && <div className="error-message">{error}</div>}
@@ -119,18 +116,17 @@ export default function RegisterPage() {
               style={{ width: '100%', marginTop: '10px' }}
               disabled={loading}
             >
-              {loading ? '注册中...' : '注册'}
+                {loading ? '登録中...' : '登録'}
             </button>
           </form>
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <span style={{ color: '#666' }}>已有账号？</span>{' '}
+            <span style={{ color: '#666' }}>アカウントをお持ちですか？</span>{' '}
             <Link href="/login" style={{ color: '#0070f3' }}>
-              立即登录
+              今すぐログインする  
             </Link>
           </div>
         </div>
       </div>
-    </>
   )
 }
 

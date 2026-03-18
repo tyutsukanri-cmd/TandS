@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Navbar from '@/components/Navbar'
 
 interface User {
   id: number
   username: string
+  passwordHash: string
   phone: string | null
   email: string | null
   companyName: string | null
@@ -43,21 +43,44 @@ export default function AdminUsersPage() {
     }
   }
 
+  const handleResetPassword = async (userId: number, username: string) => {
+    const newPassword = prompt(`请为用户 ${username} 输入新密码:`)
+    if (!newPassword || newPassword.trim() === '') {
+      return
+    }
+
+    try {
+      const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: newPassword.trim() }),
+      })
+
+      if (res.ok) {
+        alert(`用户 ${username} 的密码已成功重置！`)
+      } else if (res.status === 401 || res.status === 403) {
+        router.push('/login')
+      } else {
+        const error = await res.json()
+        setError(error.error || '重置密码失败')
+      }
+    } catch (error) {
+      setError('网络错误，请稍后重试')
+    }
+  }
+
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
-          加载中...
-        </div>
-      </>
+      <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
+        加载中...
+      </div>
     )
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container" style={{ marginTop: '30px' }}>
+    <div className="container" style={{ marginTop: '30px' }}>
         <h1 style={{ marginBottom: '30px' }}>用户管理</h1>
         {error ? (
           <div className="error-message">{error}</div>
@@ -78,6 +101,7 @@ export default function AdminUsersPage() {
                   <th>角色</th>
                   <th>订单数</th>
                   <th>注册时间</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,6 +125,22 @@ export default function AdminUsersPage() {
                     </td>
                     <td>{user.orderCount}</td>
                     <td>{new Date(user.createdAt).toLocaleString('zh-CN')}</td>
+                    <td>
+                      <button
+                        onClick={() => handleResetPassword(user.id, user.username)}
+                        style={{
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          fontSize: '12px',
+                          background: '#28a745',
+                          color: 'white',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        重置密码
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -108,7 +148,6 @@ export default function AdminUsersPage() {
           </div>
         )}
       </div>
-    </>
   )
 }
 

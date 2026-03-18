@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
       select: {
         id: true,
         username: true,
+        passwordHash: true,
         phone: true,
         email: true,
         companyName: true,

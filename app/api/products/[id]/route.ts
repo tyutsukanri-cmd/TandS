@@ -31,6 +31,7 @@ export async function GET(
       ...product,
       sizes: JSON.parse(product.sizes),
       colors: JSON.parse(product.colors),
+      colorImages: product.colorImages ? JSON.parse(product.colorImages) : {},
     }
 
     return NextResponse.json(productWithParsedData)
@@ -62,7 +63,7 @@ export async function DELETE(
     const product = await prisma.product.findUnique({
       where: { id },
       include: {
-        orders: true,
+        orderItems: true,
       },
     })
 
@@ -74,9 +75,9 @@ export async function DELETE(
     }
 
     // 检查是否有关联订单
-    if (product.orders.length > 0) {
+    if (product.orderItems.length > 0) {
       return NextResponse.json(
-        { error: `无法删除：该商品有 ${product.orders.length} 个关联订单，请先处理订单` },
+        { error: `无法删除：该商品有 ${product.orderItems.length} 个关联订单，请先处理订单` },
         { status: 400 }
       )
     }
