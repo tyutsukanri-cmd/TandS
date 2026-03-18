@@ -54,6 +54,12 @@ export function getPrintBaseImages(tabId: number, color: string) {
     return fallback
   }
 
+  // 8) トートバッグ② public/08bao2
+  if (tabId === 7) {
+    if (color === 'ナチュラル') return { left: '/08bao2/mi2.png', right: '/08bao2/mi2.png' }
+    return fallback
+  }
+
   return fallback
 }
 

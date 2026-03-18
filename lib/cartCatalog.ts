@@ -80,6 +80,15 @@ export const CART_CATALOG: CartCatalogProduct[] = [
     },
     sizes: ['30*35cm'],
   },
+  {
+    tabId: 7,
+    name: 'トートバッグ②',
+    colors: ['ナチュラル'],
+    imagesByColor: {
+      ナチュラル: ['/08bao2/mi2.png'],
+    },
+    sizes: ['30*40*10cm'],
+  },
 ]
 
 export function getCatalogProduct(tabId: number) {

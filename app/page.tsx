@@ -268,7 +268,7 @@ export default function Home() {
                     </div>
                     {item.showButton && (
                       <Link
-                        href={`/product-details?tab=${['block-1','block-2','block-3','block-4','block-5','block-6','block-7','block-8'].indexOf(item.id)}`}
+                        href={`/product-details?tab=${['block-1','block-2','block-3','block-4','block-5','block-6','block-7','block-8','block-9'].indexOf(item.id)}`}
                         className="btn btn-primary"
                         style={{ padding: item.styles.button.padding, fontSize: item.styles.button.fontSize }}
                       >
