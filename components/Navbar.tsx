@@ -19,11 +19,11 @@ export default function Navbar() {
   const { locale, setLocale, t } = useI18n()
 
   const navItems = [
-    { label: t('nav.home'), href: '/' },
-    { label: t('nav.about'), href: '/about-us' },
-    { label: t('nav.productDetails'), href: '/product-details' },
-    { label: t('nav.myCart'), href: '/my-cart' },
-    { label: t('nav.orders'), href: '/orders' },
+    { label: t('nav.home'), href: '/', icon: '/inc/home.png' },
+    { label: t('nav.about'), href: '/about-us', icon: '/inc/gongsi.png' },
+    { label: t('nav.productDetails'), href: '/product-details', icon: '/inc/xiangqing.png' },
+    { label: t('nav.myCart'), href: '/my-cart', icon: '/inc/gouwuche.png' },
+    { label: t('nav.orders'), href: '/orders', icon: '/inc/dingdan.png' },
   ]
 
   useEffect(() => {
@@ -167,8 +167,18 @@ export default function Navbar() {
                     borderBottom: active ? '2px solid #1a73e8' : '2px solid transparent',
                     color: active ? '#1a73e8' : '#5f6368',
                     fontWeight: active ? 600 : 500,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
                   }}
                 >
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={16}
+                    height={16}
+                    style={{ width: '16px', height: '16px' }}
+                  />
                   {item.label}
                 </Link>
               )
@@ -187,7 +197,14 @@ export default function Navbar() {
           >
             {user ? (
               <>
-                <span style={{ fontSize: '14px', color: '#5f6368' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: '#5f6368' }}>
+                  <Image
+                    src="/inc/yonghu.png"
+                    alt="user icon"
+                    width={16}
+                    height={16}
+                    style={{ width: '16px', height: '16px' }}
+                  />
                   {t('auth.welcome')}, {user.username}
                 </span>
                 {user.role === 'admin' && (
