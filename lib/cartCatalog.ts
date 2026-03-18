@@ -70,6 +70,16 @@ export const CART_CATALOG: CartCatalogProduct[] = [
     },
     sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
   },
+  {
+    tabId: 6,
+    name: 'トートバッグ①',
+    colors: ['ホワイト', 'ブラック'],
+    imagesByColor: {
+      ホワイト: ['/07bao1/bai2.png'],
+      ブラック: ['/07bao1/hei2.png'],
+    },
+    sizes: ['30*35cm'],
+  },
 ]
 
 export function getCatalogProduct(tabId: number) {

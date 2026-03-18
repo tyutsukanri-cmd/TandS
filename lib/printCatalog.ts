@@ -47,6 +47,13 @@ export function getPrintBaseImages(tabId: number, color: string) {
     return fallback
   }
 
+  // 7) トートバッグ① public/07bao1
+  if (tabId === 6) {
+    if (color === 'ホワイト') return { left: '/07bao1/bai2.png', right: '/07bao1/bai2.png' }
+    if (color === 'ブラック') return { left: '/07bao1/hei2.png', right: '/07bao1/hei2.png' }
+    return fallback
+  }
+
   return fallback
 }
 
