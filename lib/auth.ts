@@ -31,7 +31,7 @@ export async function getCurrentUser(request: NextRequest): Promise<TokenPayload
 export async function requireAuth(request: NextRequest): Promise<TokenPayload> {
   const user = await getCurrentUser(request)
   if (!user) {
-    throw new Error('未登录')
+    throw new Error('まだログインしていません')
   }
   return user
 }
@@ -39,7 +39,7 @@ export async function requireAuth(request: NextRequest): Promise<TokenPayload> {
 export async function requireAdmin(request: NextRequest): Promise<TokenPayload> {
   const user = await requireAuth(request)
   if (user.role !== 'admin') {
-    throw new Error('需要管理员权限')
+    throw new Error('管理者権限が必要です')
   }
   return user
 }
