@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: '用户名已存在' },
+        { error: 'ユーザー名は既に存在します' },
         { status: 400 }
       )
     }
@@ -72,12 +72,12 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: '输入数据格式错误', details: error.errors },
+        { error: '入力データの形式が正しくありません', details: error.errors },
         { status: 400 }
       )
     }
     return NextResponse.json(
-      { error: error.message || '注册失败' },
+      { error: error.message || '登録に失敗しました' },
       { status: 500 }
     )
   }

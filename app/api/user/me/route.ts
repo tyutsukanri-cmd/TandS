@@ -6,14 +6,14 @@ export async function GET(request: NextRequest) {
     const user = await getCurrentUser(request)
     if (!user) {
       return NextResponse.json(
-        { error: '未登录' },
+        { error: '未ログインです' },
         { status: 401 }
       )
     }
     return NextResponse.json({ user })
   } catch (error: any) {
     return NextResponse.json(
-      { error: error.message || '获取用户信息失败' },
+      { error: error.message || 'ユーザー情報の取得に失敗しました' },
       { status: 500 }
     )
   }

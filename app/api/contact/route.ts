@@ -28,9 +28,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, id: msg.id })
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: '输入数据格式错误', details: error.errors }, { status: 400 })
+      return NextResponse.json({ error: '入力データの形式が正しくありません', details: error.errors }, { status: 400 })
     }
-    return NextResponse.json({ error: error.message || '提交失败' }, { status: 500 })
+    return NextResponse.json({ error: error.message || '送信に失敗しました' }, { status: 500 })
   }
 }
 

@@ -35,10 +35,10 @@ export default function UserOrdersPage() {
       } else if (res.status === 401) {
         router.push('/login')
       } else {
-        setError('获取订单失败')
+        setError('注文の取得に失敗しました')
       }
     } catch (error) {
-      setError('网络错误，请稍后重试')
+      setError('ネットエラーが発生しました。後でもう一度お試しください')
     } finally {
       setLoading(false)
     }
@@ -47,21 +47,21 @@ export default function UserOrdersPage() {
   if (loading) {
     return (
       <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
-        加载中...
+        読み込み中…
       </div>
     )
   }
 
   return (
     <div className="container" style={{ marginTop: '30px' }}>
-        <h1 style={{ marginBottom: '30px' }}>我的订单</h1>
+        <h1 style={{ marginBottom: '30px' }}>注文一覧</h1>
         {error ? (
           <div className="error-message">{error}</div>
         ) : orders.length === 0 ? (
           <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
-            <p style={{ marginBottom: '20px', color: '#666' }}>暂无订单</p>
+            <p style={{ marginBottom: '20px', color: '#666' }}>注文がありません</p>
             <Link href="/" className="btn btn-primary">
-              去购物
+              購物を続ける
             </Link>
           </div>
         ) : (
@@ -69,12 +69,12 @@ export default function UserOrdersPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>订单ID</th>
+                  <th>注文ID</th>
                   <th>商品</th>
-                  <th>尺码</th>
-                  <th>颜色</th>
+                  <th>サイズ</th>
+                  <th>色</th>
                   <th>数量</th>
-                  <th>下单时间</th>
+                  <th>注文日時</th>
                 </tr>
               </thead>
               <tbody>

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: '用户名或密码错误' },
+        { error: 'ユーザー名またはパスワードが正しくありません' },
         { status: 401 }
       )
     }
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     const isValid = await bcrypt.compare(data.password, user.passwordHash)
     if (!isValid) {
       return NextResponse.json(
-        { error: '用户名或密码错误' },
+        { error: 'ユーザー名またはパスワードが正しくありません' },
         { status: 401 }
       )
     }
@@ -63,12 +63,12 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: '输入数据格式错误', details: error.errors },
+        { error: '力データの形式が正しくありません', details: error.errors },
         { status: 400 }
       )
     }
     return NextResponse.json(
-      { error: error.message || '登录失败' },
+      { error: error.message || 'ログインに失敗しました' },
       { status: 500 }
     )
   }

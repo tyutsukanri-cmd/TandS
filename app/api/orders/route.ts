@@ -163,20 +163,20 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, order: refreshed })
   } catch (error: any) {
-    if (error.message === '未登录') {
+    if (error.message === '未ログインです') {
       return NextResponse.json(
-        { error: '请先登录' },
+        { error: 'ログインしてください' },
         { status: 401 }
       )
     }
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: '输入数据格式错误', details: error.errors },
+        { error: '入力データの形式が正しくありません', details: error.errors },
         { status: 400 }
       )
     }
     return NextResponse.json(
-      { error: error.message || '创建订单失败' },
+      { error: error.message || '注文作成に失敗しました' },
       { status: 500 }
     )
   }
@@ -195,14 +195,14 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(orders)
   } catch (error: any) {
-    if (error.message === '未登录') {
+    if (error.message === '未ログインです') {
       return NextResponse.json(
-        { error: '请先登录' },
+        { error: 'ログインしてください' },
         { status: 401 }
       )
     }
     return NextResponse.json(
-      { error: error.message || '获取订单失败' },
+      { error: error.message || '注文取得に失敗しました' },
       { status: 500 }
     )
   }
