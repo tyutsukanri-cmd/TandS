@@ -83,7 +83,7 @@ export const MESSAGES: Record<Locale, Record<I18nKey, string>> = {
     'myCart.title': 'カート',
     'myCart.submit': '送信',
     'myCart.empty': '商品がありません。商品を追加してください',
-    'myCart.notice': 'このページで商品情報を必ずご確認ください。送信後は注文内容を変更できません。変更が必要な場合はご連絡ください：XXXXXXXXXXX',
+    'myCart.notice': 'このページで商品情報を必ずご確認ください。送信後は注文内容を変更できません。変更が必要な場合はご連絡ください：ttsj-service@tyu-tsu-shyoji.com',
     'about.title': '私たちについて',
     'about.leftTitle': '会社紹介',
     'about.contactTitle': 'ご不明点があればお問い合わせください',
