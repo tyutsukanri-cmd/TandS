@@ -8,6 +8,18 @@ export function getPrintBaseImages(tabId: number, color: string) {
     if (color === 'ホワイト') return { left: '/01duant/wz1.png', right: '/01duant/wb1.png' }
     if (color === 'ブラック') return { left: '/01duant/bz1.png', right: '/01duant/bb1.png' }
     if (color === 'アプリコット') return { left: '/01duant/az1.png', right: '/01duant/ab1.png' }
+    const extraColorPrefix: Record<string, string> = {
+      ピンク: '04',
+      グレー: '05',
+      ネイビー: '06',
+      ピンクグラデーション: '07',
+      ブルーグラデーション: '08',
+      グリーングラデーション: '09',
+    }
+    const prefix = extraColorPrefix[color]
+    if (prefix) {
+      return { left: `/01duant/${prefix}-5-1.png`, right: `/01duant/${prefix}-5-2.png` }
+    }
     return fallback
   }
 

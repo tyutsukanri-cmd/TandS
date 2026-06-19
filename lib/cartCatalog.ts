@@ -10,11 +10,17 @@ export const CART_CATALOG: CartCatalogProduct[] = [
   {
     tabId: 0,
     name: 'ベーシックTシャツ',
-    colors: ['ホワイト', 'ブラック', 'アプリコット'],
+    colors: ['ホワイト', 'ブラック', 'アプリコット', 'ピンク', 'グレー', 'ネイビー', 'ピンクグラデーション', 'ブルーグラデーション', 'グリーングラデーション'],
     imagesByColor: {
       ホワイト: ['/01duant/wc11.png', '/01duant/wc1.png', '/01duant/wc2.png', '/01duant/wc3.png'],
       ブラック: ['/01duant/bc11.png', '/01duant/bc1.png', '/01duant/bc2.png', '/01duant/bc3.png'],
       アプリコット: ['/01duant/ac11.png', '/01duant/ac1.png', '/01duant/ac2.png', '/01duant/ac3.png'],
+      ピンク: ['/01duant/04-1.png', '/01duant/04-2.png', '/01duant/04-3.png', '/01duant/04-4.png'],
+      グレー: ['/01duant/05-1.png', '/01duant/05-2.png', '/01duant/05-3.png', '/01duant/05-4.png'],
+      ネイビー: ['/01duant/06-1.png', '/01duant/06-2.png', '/01duant/06-3.png', '/01duant/06-4.png'],
+      ピンクグラデーション: ['/01duant/07-1.png', '/01duant/07-2.png', '/01duant/07-3.png', '/01duant/07-4.png'],
+      ブルーグラデーション: ['/01duant/08-1.png', '/01duant/08-2.png', '/01duant/08-3.png', '/01duant/08-4.png'],
+      グリーングラデーション: ['/01duant/09-1.png', '/01duant/09-2.png', '/01duant/09-3.png', '/01duant/09-4.png'],
     },
     sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
   },

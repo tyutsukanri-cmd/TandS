@@ -36,6 +36,12 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 ブラック
 ホワイト
 アプリコット
+ピンク
+グレー
+ネイビー
+ピンクグラデーション
+ブルーグラデーション
+グリーングラデーション
 
 ベーシックカラーで様々なスタイルに合わせやすい仕様です。
 
@@ -231,11 +237,17 @@ const PRODUCT_TABS: ProductTab[] = [
   {
     id: 0,
     name: 'ベーシックTシャツ',
-    colors: ['ホワイト', 'ブラック', 'アプリコット'],
+    colors: ['ホワイト', 'ブラック', 'アプリコット', 'ピンク', 'グレー', 'ネイビー', 'ピンクグラデーション', 'ブルーグラデーション', 'グリーングラデーション'],
     imagesByColor: {
       ホワイト: ['/01duant/wc11.png', '/01duant/wc1.png', '/01duant/wc2.png', '/01duant/wc3.png'],
       ブラック: ['/01duant/bc11.png', '/01duant/bc1.png', '/01duant/bc2.png', '/01duant/bc3.png'],
       アプリコット: ['/01duant/ac11.png', '/01duant/ac1.png', '/01duant/ac2.png', '/01duant/ac3.png'],
+      ピンク: ['/01duant/04-1.png', '/01duant/04-2.png', '/01duant/04-3.png', '/01duant/04-4.png'],
+      グレー: ['/01duant/05-1.png', '/01duant/05-2.png', '/01duant/05-3.png', '/01duant/05-4.png'],
+      ネイビー: ['/01duant/06-1.png', '/01duant/06-2.png', '/01duant/06-3.png', '/01duant/06-4.png'],
+      ピンクグラデーション: ['/01duant/07-1.png', '/01duant/07-2.png', '/01duant/07-3.png', '/01duant/07-4.png'],
+      ブルーグラデーション: ['/01duant/08-1.png', '/01duant/08-2.png', '/01duant/08-3.png', '/01duant/08-4.png'],
+      グリーングラデーション: ['/01duant/09-1.png', '/01duant/09-2.png', '/01duant/09-3.png', '/01duant/09-4.png'],
     },
     bottomImage: '/01duant/dtb1.png',
   },
@@ -322,11 +334,16 @@ function ProductDetailsContent() {
   const [selectedColor, setSelectedColor] = useState('白')
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
+  const [isColorsExpanded, setIsColorsExpanded] = useState(false)
 
   useEffect(() => {
     const t = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : 0
     setActiveTab(t)
   }, [tabParam])
+
+  useEffect(() => {
+    setIsColorsExpanded(false)
+  }, [activeTab])
 
   // 若当前商品不包含当前选中的颜色，则自动切换到第一个颜色
   useEffect(() => {
@@ -338,6 +355,15 @@ function ProductDetailsContent() {
   }, [activeTab, selectedColor])
 
   const product = PRODUCT_TABS[activeTab]
+  const COLLAPSED_COLOR_COUNT = 4
+  const useColorCollapse = product.id === 0 && product.colors.length > COLLAPSED_COLOR_COUNT
+  const displayedColors = (() => {
+    if (!useColorCollapse || isColorsExpanded) return product.colors
+    const first = product.colors.slice(0, COLLAPSED_COLOR_COUNT)
+    if (first.includes(selectedColor)) return first
+    return [selectedColor, ...first.filter((c) => c !== selectedColor)].slice(0, COLLAPSED_COLOR_COUNT)
+  })()
+  const hiddenColorCount = useColorCollapse && !isColorsExpanded ? product.colors.length - displayedColors.length : 0
   const carouselImages = product.imagesByColor[selectedColor] ?? product.imagesByColor['白'] ?? []
   const safeCarouselIndex = carouselImages.length > 0 ? Math.min(carouselIndex, carouselImages.length - 1) : 0
   const mainImageUrl = carouselImages[safeCarouselIndex] || ''
@@ -401,10 +427,11 @@ function ProductDetailsContent() {
         <div
           style={{
             width: '1000px',
-            height: '500px',
+            minHeight: '500px',
             marginBottom: '24px',
             display: 'flex',
             gap: '24px',
+            alignItems: 'flex-start',
           }}
         >
           {/* 左侧 300×600 图框（短袖T恤：按颜色轮播 + 圆点控制） */}
@@ -525,46 +552,76 @@ function ProductDetailsContent() {
               )}
             </div>
 
-            {/* 颜色选择 150px */}
+            {/* 颜色选择 */}
             <div
               style={{
-                height: '150px',
+                height: useColorCollapse && isColorsExpanded ? 'auto' : '150px',
                 padding: '16px',
                 border: '1px solid #e0e0e0',
                 borderRadius: '8px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '12px',
+                flexShrink: 0,
+                position: 'relative',
+                zIndex: isColorsExpanded ? 50 : 1,
+                backgroundColor: '#fff',
+                boxShadow: isColorsExpanded ? '0 4px 12px rgba(0,0,0,0.15)' : 'none',
               }}
             >
               <div style={{ fontSize: '14px', fontWeight: 600 }}>カラー</div>
-              <div style={{ display: 'flex', gap: '12px' }}>
-                {product.colors.map((color) => (
+              <div style={{ display: 'flex', flexWrap: isColorsExpanded ? 'wrap' : 'nowrap', gap: '12px' }}>
+                {displayedColors.map((color) => (
                   <button
                     key={color}
                     type="button"
                     onClick={() => setSelectedColor(color)}
                     style={{
-                      padding: '8px 20px',
+                      padding: '8px 16px',
                       border: `2px solid ${selectedColor === color ? '#f4a261' : '#ddd'}`,
                       borderRadius: '6px',
                       backgroundColor: selectedColor === color ? 'rgba(244,162,97,0.2)' : '#fff',
                       cursor: 'pointer',
-                      fontSize: product.id === 3 ? '12px' : '14px',
+                      fontSize: product.id === 0 || product.id === 3 ? '12px' : '14px',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
                     }}
                   >
                     {color}
                   </button>
                 ))}
               </div>
+              {useColorCollapse && (
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    type="button"
+                    onClick={() => setIsColorsExpanded(!isColorsExpanded)}
+                    style={{
+                      padding: '6px 16px',
+                      backgroundColor: '#f4a261',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                    }}
+                  >
+                    {isColorsExpanded ? '表示を戻す' : `もっと見る（+${hiddenColorCount}）`}
+                  </button>
+                </div>
+              )}
             </div>
 
-            {/* 加入购物车 150px */}
+            {/* 加入购物车 */}
             <div
               style={{
-                height: '150px',
                 display: 'flex',
                 alignItems: 'center',
+                flexShrink: 0,
+                position: 'relative',
+                zIndex: isColorsExpanded ? 101 : 2,
+                backgroundColor: '#f5f5f5',
+                padding: '6px 0',
               }}
             >
               <button
