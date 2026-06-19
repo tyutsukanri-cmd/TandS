@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const fileNameRaw = String(form.get('fileName') || '')
     const dateFolderRaw = String(form.get('dateFolder') || '')
 
-    if (!(file instanceof File)) {
+    if (!file) {
       return NextResponse.json({ error: 'ファイルがありません' }, { status: 400 })
     }
     if (file.type !== 'image/png' && !file.name.toLowerCase().endsWith('.png')) {
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
     const filePath = `/uploaded/${encodeURIComponent(user.username)}/${dateFolder}/${encodeURIComponent(fileName)}`
     return NextResponse.json({ success: true, fileName, filePath })
   } catch (error: any) {
+    console.error('UPLOAD ERROR:', error)
     if (error.message === '未ログインです') {
       return NextResponse.json({ error: 'ログインしてください' }, { status: 401 })
     }
