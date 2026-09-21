@@ -1,11 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useI18n } from '@/components/I18nProvider'
 
 export default function AboutUsPage() {
   const { t } = useI18n()
+  useEffect(() => {
+    if (window.location.hash === '#contact-bottom') {
+      document.getElementById('contact-bottom')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [])
   const [lastName, setLastName] = useState('')
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
@@ -115,12 +120,14 @@ export default function AboutUsPage() {
 
         {/* 下方 1000 宽表单框 */}
         <div
+          id="contact-bottom"
           style={{
             width: '1000px',
             margin: '0 auto',
             border: '1px solid #e0e0e0',
             borderRadius: '8px',
             padding: '24px 24px 20px',
+            scrollMarginTop: '80px',
           }}
         >
           <div style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>{t('about.contactTitle')}</div>

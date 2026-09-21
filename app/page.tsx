@@ -1,342 +1,273 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Home() {
 
   return (
     <>
-      {/* 全宽 hero 图片 + 标题文案 */}
+      {/* 菜单下方大图：1200px框居中，左侧40%填色#EAE7E6，右侧60%放图 */}
       <section
         style={{
-          position: 'relative',
           width: '100%',
-          height: '420px',
+          backgroundColor: '#fff',
           marginTop: '-16px',
-          marginBottom: '40px',
-          overflow: 'hidden',
+          marginBottom: '0',
         }}
       >
-        <Image
-          src="/img/cullen-jones-PQi3Zp1qksc-unsplash.jpg"
-          alt="TandS 首页形象图"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
+            width: '1200px',
+            maxWidth: '100%',
+            margin: '0 auto',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'stretch',
           }}
         >
-          <div className="container">
-            <div
-              style={{
-                maxWidth: '900px',
-                backgroundColor: 'rgba(0, 0, 0, 0.45)',
-                padding: '40px 50px',
-                borderRadius: '12px',
-                textAlign: 'center',
-              }}
-            >
-              <h1
+          <div
+            style={{
+              width: '40%',
+              backgroundColor: '#EAE7E6',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '40px',
+            }}
+          >
+            <div>
+              <div style={{ fontSize: '14px', letterSpacing: '2px', color: '#333', marginBottom: '12px' }}>
+                T&S FASHION
+              </div>
+              <div style={{ fontSize: '52px', fontWeight: 400, lineHeight: 1.15, color: '#111', fontFamily: "'Bodoni MT', Didot, 'Didot LT STD', 'Playfair Display', Georgia, serif", letterSpacing: '1px' }}>
+                WEAR
+                <br />
+                YOUR
+                <br />
+                STORY
+              </div>
+              <div style={{ marginTop: '24px', fontSize: '14px', color: '#333' }}>
+                ご自身のデザインと好きな絵を身にまとう.
+              </div>
+              <Link
+                href="/product-details"
                 style={{
-                  fontSize: '42px',
-                  marginBottom: '24px',
-                  color: '#ffffff',
+                  display: 'inline-block',
+                  marginTop: '24px',
+                  fontSize: '14px',
+                  color: '#111',
+                  borderBottom: '1px solid #111',
+                  paddingBottom: '4px',
                 }}
               >
-                ご自身のデザインと好きな絵を身にまとう
-              </h1>
-              <p
-                style={{
-                  fontSize: '20px',
-                  color: '#f1f3f4',
-                  lineHeight: 1.7,
-                  marginBottom: '30px',
-                }}
-              >
-                大量ご注文の場合はご相談に応じます。
-              </p>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                商品をすべて見る →
+              </Link>
+            </div>
+          </div>
+          <div style={{ width: '60%' }}>
+            <img
+              src="/img/1up.png"
+              alt="TandS 首页形象图"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+        </div>
+      </section>
 
+      {/* 下方1200宽 4x3 共12个正方形格子：上左右各留6px余白 */}
+      <section style={{ width: '100%', backgroundColor: '#fff' }}>
+        <div
+          style={{
+            width: '1200px',
+            maxWidth: '100%',
+            margin: '0 auto',
+            padding: '6px 6px 0',
+          }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '6px',
+            }}
+          >
+            {/* 1号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-6.png" alt="1" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 2号：文 背景#F1F4F3 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>01</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ベーシックTシャツ</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  100％高品質コットン
+                  <br />
+                  柔らかく肌触りの良い仕上がりとなっています
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=0" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
+            </div>
+            {/* 3号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-1.png" alt="3" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 4号：文 背景#D3D3D7 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>02</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ウォッシュTシャツ</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  100％高品質コットン
+                  <br />
+                  通気性にも優れており、長時間の着用でも快適です
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=1" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
+            </div>
+            {/* 5号：文 背景#F1F4F3 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>03</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>長袖Tシャツ</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  100％高品質コットン
+                  <br />
+                  柔らかく肌触りの良い仕上がりとなっています
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=2" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
+            </div>
+            {/* 6号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-5.png" alt="6" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 7号：文 背景#D3D3D7 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>04</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>オーバーサイズ</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  100％高品質コットン
+                  <br />
+                  程よい厚みで、透けにくく耐久性にも優れています
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=3" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
+            </div>
+            {/* 8号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-2.png" alt="8" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 9号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-4.png" alt="9" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 10号：文 背景#F1F4F3 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>05</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>スウェット</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  本製品は100％高品質スウェット素材を使用し
+                  <br />
+                  柔らかく肌触りの良い仕上がりとなっています
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
+            </div>
+            {/* 11号：图 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+              <img src="/img/0-3.png" alt="11" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* 12号：文 背景#D3D3D7 */}
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+              <div>
+                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>06</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>パーカー</div>
+                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                  本製品は100％高品質スウェット素材を使用し
+                  <br />
+                  柔らかく肌触りの良い仕上がりとなっています
+                </div>
+                <div style={{ height: '16px' }} />
+                <Link href="/product-details?tab=6" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="container" style={{ paddingBottom: '40px' }}>
-        <section style={{ marginBottom: '40px' }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(1000px, 1000px))',
-              gap: '20px',
-              justifyContent: 'center',
-            }}
-          >
-            {(() => {
-              type Side = 'left' | 'right'
-              type NormalBlock = {
-                id: string
-                variant: 'normal'
-                title: string
-                desc: string
-                textSide: Side
-                images: string[]
-                showButton: boolean
-                styles: {
-                  card: { width: number; height: number; padding: number; gap: number }
-                  text: { width: number; gap: number }
-                  images: { gap: number }
-                  imageTile: { borderRadius: number }
-                  button: { padding: string; fontSize: string }
-                }
-              }
-              type ImagesOnlyBlock = {
-                id: string
-                variant: 'imagesOnly'
-                images: string[]
-                styles: {
-                  card: { width: number; height: number; borderSize: number }
-                  images: { gap: number }
-                }
-              }
-              type Block = NormalBlock | ImagesOnlyBlock
-
-              const blocks: Block[] = [
-                {
-                  id: 'block-1',
-                  variant: 'normal',
-                  title: 'ベーシック\nTシャツ',
-                  desc: '綿100％　肌にやさしい素材',
-                  textSide: 'left',
-                  images: ['/images/wdt1.png', '/images/Bdt1.png', '/images/adt1.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-                {
-                  id: 'block-2',
-                  variant: 'normal',
-                  title: 'ウォッシュ\nTシャツ',
-                  desc: '綿100％・ウォッシュ加工',
-                  textSide: 'right',
-                  images: ['/images/bsdt1.png', '/images/bsdt2.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-                {
-                  id: 'block-3',
-                  variant: 'normal',
-                  title: '長袖Tシャツ',
-                  desc: '綿100％　肌にやさしい素材',
-                  textSide: 'left',
-                  images: ['/images/03wct1.png', '/images/03bct1.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-                {
-                  id: 'block-4',
-                  variant: 'normal',
-                  title: 'オーバーサイズ',
-                  desc: '綿100％・ウォッシュ加工',
-                  textSide: 'right',
-                  images: ['/images/04wot1.png', '/images/04bot1.png', '/images/ob1.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-                {
-                  id: 'block-5',
-                  variant: 'imagesOnly',
-                  images: ['/images/z9ss1.png', '/images/z9ss2.png', '/images/z9ss3.png'],
-                  styles: {
-                    card: { width: 1000, height: 300, borderSize: 2 },
-                    images: { gap: 0 },
-                  },
-                },
-                {
-                  id: 'block-6',
-                  variant: 'normal',
-                  title: 'スウェット',
-                  desc: '綿混素材・快適でお手入れ簡単',
-                  textSide: 'left',
-                  images: ['/images/05ww1.png', '/images/05bw1.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-                {
-                  id: 'block-7',
-                  variant: 'normal',
-                  title: 'パーカー',
-                  desc: '綿混素材・快適でお手入れ簡単',
-                  textSide: 'right',
-                  images: ['/images/06wwm1.png', '/images/06bwm1.png'],
-                  showButton: true,
-                  styles: {
-                    card: { width: 1000, height: 300, padding: 16, gap: 16 },
-                    text: { width: 150, gap: 10 },
-                    images: { gap: 12 },
-                    imageTile: { borderRadius: 8 },
-                    button: { padding: '8px 12px', fontSize: '14px' },
-                  },
-                },
-              ]
-
-              return blocks.map((item) => {
-                if (item.variant === 'imagesOnly') {
-                  return (
-                    <div
-                      key={item.id}
-                      className="card"
-                      style={{
-                        width: item.styles.card.width,
-                        height: item.styles.card.height,
-                        padding: 0,
-                        display: 'flex',
-                        gap: item.styles.images.gap,
-                        borderTop: `${item.styles.card.borderSize}px solid #000`,
-                        borderBottom: `${item.styles.card.borderSize}px solid #000`,
-                        borderRadius: 0,
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {item.images.map((src) => (
-                        <div
-                          key={src}
-                          style={{
-                            flex: 1,
-                            position: 'relative',
-                            
-                          }}
-                        >
-                          <Image src={src} alt="展示图" fill style={{ objectFit: 'contain' }} />
-                        </div>
-                      ))}
-                    </div>
-                  )
-                }
-
-                const textBlock = (
-                  <div
-                    style={{
-                      width: item.styles.text.width,
-                      flexShrink: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      gap: item.styles.text.gap,
-                    }}
-                  >
-                    <div>
-                      <h3 style={{ fontSize: '18px', color: '#202124', marginBottom: '6px', whiteSpace: 'pre-line' }}>{item.title}</h3>
-                      <p style={{ fontSize: '14px', color: '#5f6368' }}>{item.desc}</p>
-                    </div>
-                    {item.showButton && (
-                      <Link
-                        href={`/product-details?tab=${['block-1','block-2','block-3','block-4','block-5','block-6','block-7','block-8','block-9'].indexOf(item.id)}`}
-                        className="btn btn-primary"
-                        style={{ padding: item.styles.button.padding, fontSize: item.styles.button.fontSize }}
-                      >
-                        詳しい情報
-                      </Link>
-                    )}
-                  </div>
-                )
-
-                const imageBlock = (
-                  <div
-                    style={{
-                      flex: 1,
-                      display: 'flex',
-                      gap: item.styles.images.gap,
-                      height: '100%',
-                    }}
-                  >
-                    {item.images.map((src) => (
-                      <div
-                        key={src}
-                        style={{
-                          flex: 1,
-                          position: 'relative',
-                          borderRadius: item.styles.imageTile.borderRadius,
-                          overflow: 'hidden',
-                          
-                        }}
-                      >
-                        <Image src={src} alt={`${item.title} 图片`} fill style={{ objectFit: 'contain' }} />
-                      </div>
-                    ))}
-                  </div>
-                )
-
-                return (
-                  <div
-                    key={item.id}
-                    className="card"
-                    style={{
-                      width: item.styles.card.width,
-                      height: item.styles.card.height,
-                      display: 'flex',
-                      alignItems: 'stretch',
-                      gap: item.styles.card.gap,
-                      padding: item.styles.card.padding,
-                      cursor: 'default',
-                    }}
-                  >
-                    {item.textSide === 'left' ? (
-                      <>
-                        {textBlock}
-                        {imageBlock}
-                      </>
-                    ) : (
-                      <>
-                        {imageBlock}
-                        {textBlock}
-                      </>
-                    )}
-                  </div>
-                )
-              })
-            })()}
+      {/* 最下方：1200宽，2down.png平铺整框，文字直接压在背景图左侧 */}
+      <section style={{ width: '100%', backgroundColor: '#fff', paddingBottom: '40px' }}>
+        <div
+          style={{
+            width: '1200px',
+            maxWidth: '100%',
+            margin: '0 auto',
+            padding: '6px 6px 6px',
+          }}
+        >
+          <div style={{ position: 'relative', overflow: 'hidden', height: '146px', backgroundColor: '#000' }}>
+            <img
+              src="/img/2down.png"
+              alt="custom wholesale"
+              style={{ position: 'absolute', top: 0, right: 0, height: '100%', width: 'auto', maxWidth: 'none', display: 'block' }}
+            />
+            <div
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                color: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                height: '146px',
+                padding: '10px 0 10px 8%',
+              }}
+            >
+              <div>
+                <div style={{ fontSize: '18px', fontWeight: 700, lineHeight: 1.2, marginBottom: '6px', whiteSpace: 'nowrap' }}>
+                  CUSTOM & WHOLESALE
+                </div>
+                <div style={{ fontSize: '11px', lineHeight: 1.6 }}>
+                  オリジナルデザイン 大量注文も
+                  <br />
+                  お気軽にご相談ください。
+                </div>
+                <div style={{ height: '6px' }} />
+                <Link
+                  href="/about-us#contact-bottom"
+                  style={{ fontSize: '11px', color: '#fff', borderBottom: '1px solid #fff', paddingBottom: '2px' }}
+                >
+                  お問い合わせ →
+                </Link>
+              </div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   )
 }
-
