@@ -73,147 +73,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 下方1200宽 4x3 共12个正方形格子：上左右各留6px余白 */}
+      {/* 12宫格：1200宽，外圈0余白；两两一组组内无缝，组间横竖各8px */}
       <section style={{ width: '100%', backgroundColor: '#fff' }}>
         <div
           style={{
             width: '1200px',
             maxWidth: '100%',
             margin: '0 auto',
-            padding: '6px 6px 0',
+            padding: '0',
           }}
         >
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '6px',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '8px',
             }}
           >
-            {/* 1号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-6.png" alt="1" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 2号：文 背景#F1F4F3 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>01</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ベーシックTシャツ</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  100％高品質コットン
-                  <br />
-                  柔らかく肌触りの良い仕上がりとなっています
+            {/* 1-2组：左上 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-6.png" alt="1" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>01</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ベーシックTシャツ</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    100％高品質コットン
+                    <br />
+                    柔らかく肌触りの良い仕上がりとなっています
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=0" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=0" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
               </div>
             </div>
-            {/* 3号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-1.png" alt="3" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 4号：文 背景#D3D3D7 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>02</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ウォッシュTシャツ</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  100％高品質コットン
-                  <br />
-                  通気性にも優れており、長時間の着用でも快適です
+            {/* 3-4组：右上 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-1.png" alt="3" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>02</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ウォッシュTシャツ</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    100％高品質コットン
+                    <br />
+                    通気性にも優れており、長時間の着用でも快適です
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=1" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=1" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
               </div>
             </div>
-            {/* 5号：文 背景#F1F4F3 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>03</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>長袖Tシャツ</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  100％高品質コットン
-                  <br />
-                  柔らかく肌触りの良い仕上がりとなっています
+            {/* 5-6组：左中 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>03</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>長袖Tシャツ</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    100％高品質コットン
+                    <br />
+                    柔らかく肌触りの良い仕上がりとなっています
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=2" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=2" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-5.png" alt="6" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
-            {/* 6号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-5.png" alt="6" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 7号：文 背景#D3D3D7 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>04</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>オーバーサイズ</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  100％高品質コットン
-                  <br />
-                  程よい厚みで、透けにくく耐久性にも優れています
+            {/* 7-8组：右中 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>04</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>オーバーサイズ</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    100％高品質コットン
+                    <br />
+                    程よい厚みで、透けにくく耐久性にも優れています
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=3" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=3" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-2.png" alt="8" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
-            {/* 8号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-2.png" alt="8" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 9号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-4.png" alt="9" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 10号：文 背景#F1F4F3 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>05</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>スウェット</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  本製品は100％高品質スウェット素材を使用し
-                  <br />
-                  柔らかく肌触りの良い仕上がりとなっています
+            {/* 9-10组：左下 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-4.png" alt="9" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>05</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>スウェット</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    本製品は100％高品質スウェット素材を使用し
+                    <br />
+                    柔らかく肌触りの良い仕上がりとなっています
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
               </div>
             </div>
-            {/* 11号：图 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
-              <img src="/img/0-3.png" alt="11" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            {/* 12号：文 背景#D3D3D7 */}
-            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-              <div>
-                <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>06</div>
-                <div style={{ height: '16px' }} />
-                <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>パーカー</div>
-                <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                  本製品は100％高品質スウェット素材を使用し
-                  <br />
-                  柔らかく肌触りの良い仕上がりとなっています
+            {/* 11-12组：右下 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-3.png" alt="11" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>06</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>パーカー</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    本製品は100％高品質スウェット素材を使用し
+                    <br />
+                    柔らかく肌触りの良い仕上がりとなっています
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=6" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
                 </div>
-                <div style={{ height: '16px' }} />
-                <Link href="/product-details?tab=6" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                  商品をすべて見る →
-                </Link>
               </div>
             </div>
           </div>
@@ -227,7 +233,7 @@ export default function Home() {
             width: '1200px',
             maxWidth: '100%',
             margin: '0 auto',
-            padding: '6px 6px 6px',
+            padding: '8px 0 0',
           }}
         >
           <div style={{ position: 'relative', overflow: 'hidden', height: '146px', backgroundColor: '#000' }}>

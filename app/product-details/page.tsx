@@ -332,6 +332,7 @@ function ProductDetailsContent() {
 
   const [activeTab, setActiveTab] = useState(initialTab)
   const [selectedColor, setSelectedColor] = useState('白')
+  const [selectedSize, setSelectedSize] = useState('S')
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
   const [isColorsExpanded, setIsColorsExpanded] = useState(false)
@@ -344,6 +345,20 @@ function ProductDetailsContent() {
   useEffect(() => {
     setIsColorsExpanded(false)
   }, [activeTab])
+
+  // 切换商品时，尺寸回到该商品的第一个尺码
+  useEffect(() => {
+    const p = getCatalogProduct(activeTab)
+    setSelectedSize(p.sizes[0] ?? '')
+  }, [activeTab])
+
+  // 商品1（tab0）新版布局用的颜色顺序：01～09 文件夹与色卡 inc/01～09.png 对应
+  const TAB0_COLORS = PRODUCT_TABS[0].colors
+  const tab0ColorIdx = Math.max(0, TAB0_COLORS.indexOf(selectedColor))
+  const tab0Folder = String(tab0ColorIdx + 1).padStart(2, '0')
+  const tab0Sizes = getCatalogProduct(0).sizes
+  const pad2 = (n: number) => String(n).padStart(2, '0')
+  const categoryLabel = activeTab <= 5 ? 'T-SHIRTS' : 'TOTE BAG'
 
   // 若当前商品不包含当前选中的颜色，则自动切换到第一个颜色
   useEffect(() => {
@@ -385,32 +400,27 @@ function ProductDetailsContent() {
 
   return (
     <div className="container" style={{ paddingTop: '20px', paddingBottom: '40px' }}>
-        <h1 style={{ marginBottom: '24px', fontSize: '28px' }}>商品詳細</h1>
-
-        {/* 下沉式选项卡（默认显示） */}
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ fontSize: '14px', fontWeight: 600, color: '#333', marginBottom: '10px' }}>商品を選択してください</div>
+        {/* 商品选项卡：无边框无底色，纯黑字，选中黑底白字，整体缩小 */}
+        <div style={{ marginBottom: '16px' }}>
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '10px',
-              padding: '16px',
-              border: '1px solid #e0e0e0',
-              borderRadius: '8px',
-              backgroundColor: '#fafafa',
+              gap: '6px',
             }}
           >
             {PRODUCT_TABS.map((tab) => (
               <Link key={tab.id} href={`/product-details?tab=${tab.id}`} onClick={() => setActiveTab(tab.id)}>
                 <button
                   type="button"
-                  className="btn"
                   style={{
-                    padding: '8px 16px',
-                    backgroundColor: activeTab === tab.id ? '#f4a261' : '#fff',
-                    color: activeTab === tab.id ? '#fff' : '#333',
-                    border: '1px solid #ddd',
+                    padding: '4px 10px',
+                    fontSize: '12px',
+                    backgroundColor: activeTab === tab.id ? '#000' : 'transparent',
+                    color: activeTab === tab.id ? '#fff' : '#000',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
                   }}
                 >
                   {tab.name}
@@ -420,6 +430,158 @@ function ProductDetailsContent() {
           </div>
         </div>
 
+        {activeTab === 0 ? (
+          /* 商品1新版布局：1200宽，左45%四图，右详情 */
+          <div style={{ width: '1200px', maxWidth: '100%', margin: '0 auto' }}>
+            <style>{`.pdesc-scroll::-webkit-scrollbar{width:6px}.pdesc-scroll::-webkit-scrollbar-track{background:transparent}.pdesc-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}`}</style>
+            <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
+              {/* 左侧6图：1 2第一行，3 4第二行，5 6第三行 */}
+              <div style={{ width: 'calc(50% - 15px)', display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '15px', rowGap: '10px' }}>
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <img
+                    key={n}
+                    src={`/01duant/001/${tab0Folder}/0${n}.png`}
+                    alt={`${product.name} ${selectedColor} ${n}`}
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                  />
+                ))}
+              </div>
+              {/* 右侧详情 */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: '14px', color: '#333' }}>{pad2(activeTab + 1)} / {pad2(PRODUCT_TABS.length)}</div>
+                <div style={{ height: '16px' }} />
+                <div style={{ fontSize: '12px', letterSpacing: '2px', color: '#666' }}>{categoryLabel}</div>
+                <div style={{ fontSize: '28px', fontWeight: 700, color: '#111', marginTop: '8px', marginBottom: '16px' }}>{product.name}</div>
+                {/* 说明区：上下黑线，中间可滚动 */}
+                <div style={{ borderTop: '2px solid #000' }} />
+                <div
+                  className="pdesc-scroll"
+                  style={{
+                    height: isDescriptionExpanded ? 'auto' : '180px',
+                    overflowY: isDescriptionExpanded ? 'visible' : 'auto',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#000 transparent',
+                    padding: '12px 8px 12px 0',
+                  }}
+                >
+                  <div style={{ fontSize: '13px', lineHeight: 1.8, color: '#333', whiteSpace: 'pre-line' }}>
+                    {PRODUCT_DESCRIPTIONS[product.id] || '商品説明がありません'}
+                  </div>
+                </div>
+                <div style={{ borderBottom: '2px solid #000' }} />
+                <div style={{ textAlign: 'right', marginTop: '8px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                    style={{ background: 'none', border: 'none', padding: 0, fontSize: '13px', color: '#111', cursor: 'pointer' }}
+                  >
+                    {isDescriptionExpanded ? '表示を戻す' : '全文を表示'}
+                  </button>
+                </div>
+                {/* 颜色 */}
+                <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>カラー</div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                  {TAB0_COLORS.map((color, idx) => {
+                    const sw = String(idx + 1).padStart(2, '0')
+                    return (
+                      <button
+                        key={color}
+                        type="button"
+                        onClick={() => setSelectedColor(color)}
+                        title={color}
+                        style={{
+                          padding: 0,
+                          border: selectedColor === color ? '2px solid #000' : '2px solid transparent',
+                          background: 'none',
+                          cursor: 'pointer',
+                          width: '52px',
+                          height: '52px',
+                        }}
+                      >
+                        <img src={`/01duant/001/inc/${sw}.png`} alt={color} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      </button>
+                    )
+                  })}
+                </div>
+                <div style={{ fontSize: '13px', color: '#111', marginTop: '8px' }}>{selectedColor}</div>
+                {/* 尺寸 */}
+                <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>サイズ</div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                  {tab0Sizes.map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => setSelectedSize(size)}
+                      style={{
+                        minWidth: '44px',
+                        padding: '6px 10px',
+                        fontSize: '13px',
+                        backgroundColor: selectedSize === size ? '#000' : '#fff',
+                        color: selectedSize === size ? '#fff' : '#111',
+                        border: '1px solid #000',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+                {/* 尺码表 */}
+                <img src="/01duant/001/chima.png" alt="サイズ表" style={{ width: '100%', height: 'auto', display: 'block', marginTop: '16px' }} />
+                {/* 加入购物车 */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    ;(async () => {
+                      const catalogProduct = getCatalogProduct(activeTab)
+                      const color = catalogProduct.colors.includes(selectedColor) ? selectedColor : catalogProduct.colors[0]
+                      const size = catalogProduct.sizes.includes(selectedSize) ? selectedSize : catalogProduct.sizes[0] ?? ''
+
+                      let username = 'guest'
+                      try {
+                        const r = await fetch('/api/user/me')
+                        if (r.ok) {
+                          const data = await r.json()
+                          username = data?.user?.username ?? 'guest'
+                        }
+                      } catch {}
+
+                      const displayId = allocateDisplayId(username)
+                      const nextItems = loadCartItems()
+                      nextItems.push({
+                        cartId: createCartId(),
+                        displayId,
+                        productTabId: activeTab,
+                        color,
+                        size,
+                        quantity: 1,
+                        positions: { p1: '', p2: '', p3: '', p4: '' },
+                        note: '',
+                      })
+                      saveCartItems(nextItems)
+                      router.push('/my-cart')
+                    })()
+                  }}
+                  style={{
+                    width: '100%',
+                    marginTop: '16px',
+                    padding: '12px 0',
+                    fontSize: '15px',
+                    backgroundColor: '#000',
+                    color: '#fff',
+                    border: '1px solid #000',
+                    borderRadius: '2px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  カートに追加
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
         {/* 商品名 */}
         <h2 style={{ marginBottom: '20px', fontSize: '22px' }}>{product.name}</h2>
 
@@ -686,6 +848,8 @@ function ProductDetailsContent() {
             )}
           </div>
         </div>
+          </>
+        )}
       </div>
   )
 }
