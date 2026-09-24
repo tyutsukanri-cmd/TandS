@@ -16,6 +16,7 @@ export default function Home() {
         }}
       >
         <div
+          className="r-hero-flex"
           style={{
             width: '1200px',
             maxWidth: '100%',
@@ -38,7 +39,7 @@ export default function Home() {
               <div style={{ fontSize: '14px', letterSpacing: '2px', color: '#333', marginBottom: '12px' }}>
                 T&S FASHION
               </div>
-              <div style={{ fontSize: '52px', fontWeight: 400, lineHeight: 1.15, color: '#111', fontFamily: "'Bodoni MT', Didot, 'Didot LT STD', 'Playfair Display', Georgia, serif", letterSpacing: '1px' }}>
+              <div className="r-hero-title" style={{ fontSize: '52px', fontWeight: 400, lineHeight: 1.15, color: '#111', fontFamily: "'Bodoni MT', Didot, 'Didot LT STD', 'Playfair Display', Georgia, serif", letterSpacing: '1px' }}>
                 WEAR
                 <br />
                 YOUR
@@ -84,6 +85,7 @@ export default function Home() {
           }}
         >
           <div
+            className="r-pair-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
@@ -91,7 +93,7 @@ export default function Home() {
             }}
           >
             {/* 1-2组：左上 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
                 <img src="/img/0-6.png" alt="1" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
@@ -113,7 +115,7 @@ export default function Home() {
               </div>
             </div>
             {/* 3-4组：右上 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
                 <img src="/img/0-1.png" alt="3" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
@@ -135,7 +137,7 @@ export default function Home() {
               </div>
             </div>
             {/* 5-6组：左中 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
                 <div>
                   <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>03</div>
@@ -157,7 +159,7 @@ export default function Home() {
               </div>
             </div>
             {/* 7-8组：右中 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
                 <div>
                   <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>04</div>
@@ -179,7 +181,7 @@ export default function Home() {
               </div>
             </div>
             {/* 9-10组：左下 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
                 <img src="/img/0-4.png" alt="9" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
@@ -194,14 +196,14 @@ export default function Home() {
                     柔らかく肌触りの良い仕上がりとなっています
                   </div>
                   <div style={{ height: '16px' }} />
-                  <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                    商品をすべて見る →
-                  </Link>
-                </div>
+                <Link href="/product-details?tab=4" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
               </div>
             </div>
+          </div>
             {/* 11-12组：右下 */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
               <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
                 <img src="/img/0-3.png" alt="11" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
@@ -216,10 +218,10 @@ export default function Home() {
                     柔らかく肌触りの良い仕上がりとなっています
                   </div>
                   <div style={{ height: '16px' }} />
-                  <Link href="/product-details?tab=6" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                    商品をすべて見る →
-                  </Link>
-                </div>
+                <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                  商品をすべて見る →
+                </Link>
+              </div>
               </div>
             </div>
           </div>
@@ -254,7 +256,7 @@ export default function Home() {
               }}
             >
               <div>
-                <div style={{ fontSize: '18px', fontWeight: 700, lineHeight: 1.2, marginBottom: '6px', whiteSpace: 'nowrap' }}>
+                <div className="r-banner-title" style={{ fontSize: '18px', fontWeight: 700, lineHeight: 1.2, marginBottom: '6px', whiteSpace: 'nowrap' }}>
                   CUSTOM & WHOLESALE
                 </div>
                 <div style={{ fontSize: '11px', lineHeight: 1.6 }}>

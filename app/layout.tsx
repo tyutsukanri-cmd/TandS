@@ -26,6 +26,7 @@ export default function RootLayout({
             <section style={{ padding: '0 0 10px', backgroundColor: '#fff' }}>
               <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#fff' }}>
                 <div
+                  className="r-footer-bar"
                   style={{
                     width: '1200px',
                     maxWidth: '100%',

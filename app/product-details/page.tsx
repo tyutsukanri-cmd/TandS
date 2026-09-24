@@ -416,7 +416,7 @@ function ProductDetailsContent() {
           /* 新版布局：1200宽，左6图，右详情 */
           <div style={{ width: '1200px', maxWidth: '100%', margin: '0 auto' }}>
             <style>{`.pdesc-scroll::-webkit-scrollbar{width:6px}.pdesc-scroll::-webkit-scrollbar-track{background:transparent}.pdesc-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}`}</style>
-            <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
+            <div className="r-detail-flex" style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
               {/* 左侧6图：1 2第一行，3 4第二行，5 6第三行 */}
               <div style={{ width: 'calc(50% - 15px)', display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '15px', rowGap: '10px' }}>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
@@ -462,7 +462,7 @@ function ProductDetailsContent() {
                 </div>
                 {/* 颜色 */}
                 <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>カラー</div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                <div className="r-wrap-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
                   {layoutColors.map((color, idx) => {
                     const sw = String(idx + 1).padStart(2, '0')
                     return (
@@ -488,7 +488,7 @@ function ProductDetailsContent() {
                 <div style={{ fontSize: '13px', color: '#111', marginTop: '8px' }}>{selectedColor}</div>
                 {/* 尺寸 */}
                 <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>サイズ</div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                <div className="r-wrap-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
                   {layoutSizes.map((size) => (
                     <button
                       key={size}

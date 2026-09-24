@@ -14,6 +14,7 @@ interface User {
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
   const { locale, setLocale, t } = useI18n()
@@ -33,6 +34,11 @@ export default function Navbar() {
   // 监听路由变化，重新获取用户信息
   useEffect(() => {
     fetchUser()
+  }, [pathname])
+
+  // 移动端菜单：切换页面后自动关闭
+  useEffect(() => {
+    setMenuOpen(false)
   }, [pathname])
 
   // 监听页面可见性变化，当用户从其他标签页回来时更新状态
@@ -118,6 +124,7 @@ export default function Navbar() {
           }}
         >
           <div
+            className="r-nav-links"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -155,6 +162,7 @@ export default function Navbar() {
           </div>
 
           <div
+            className="r-nav-auth"
             style={{
               display: 'flex',
               gap: '20px',
@@ -223,7 +231,111 @@ export default function Navbar() {
               </>
             )}
           </div>
+          {/* 移动端汉堡按钮 */}
+          <button
+            type="button"
+            className="r-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="menu"
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '5px',
+              background: 'none',
+              border: 'none',
+              padding: '8px',
+              cursor: 'pointer',
+            }}
+          >
+            <span style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#000' }} />
+            <span style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#000' }} />
+            <span style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#000' }} />
+          </button>
         </div>
+        {/* 移动端下拉菜单 */}
+        {menuOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              backgroundColor: '#fff',
+              borderTop: '1px solid #eee',
+              boxShadow: '0 8px 16px rgba(0,0,0,0.12)',
+              padding: '8px 20px 16px',
+              display: 'flex',
+              flexDirection: 'column',
+              zIndex: 60,
+            }}
+          >
+            {navItems.map((item) => {
+              const active =
+                item.href === '/'
+                  ? pathname === '/'
+                  : pathname?.startsWith(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    padding: '12px 0',
+                    borderBottom: '1px solid #f0f0f0',
+                    color: '#000',
+                    fontSize: '15px',
+                    fontWeight: active ? 600 : 400,
+                    backgroundColor: active ? '#f5f5f5' : 'transparent',
+                  }}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+            {user ? (
+              <>
+                <div style={{ padding: '12px 0', borderBottom: '1px solid #f0f0f0', fontSize: '14px', color: '#666' }}>
+                  {t('auth.welcome')}, {user.username}
+                </div>
+                {user.role === 'admin' && (
+                  <Link
+                    href="/admin/dashboard"
+                    onClick={() => setMenuOpen(false)}
+                    style={{ padding: '12px 0', borderBottom: '1px solid #f0f0f0', color: '#000', fontSize: '15px' }}
+                  >
+                    {t('auth.admin')}
+                  </Link>
+                )}
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setMenuOpen(false)
+                  }}
+                  style={{ background: 'none', border: 'none', textAlign: 'left', padding: '12px 0', color: '#000', fontSize: '15px', cursor: 'pointer' }}
+                >
+                  {t('auth.logout')}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  style={{ padding: '12px 0', borderBottom: '1px solid #f0f0f0', color: '#000', fontSize: '15px' }}
+                >
+                  {t('auth.login')}
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setMenuOpen(false)}
+                  style={{ padding: '12px 0', color: '#000', fontSize: '15px' }}
+                >
+                  {t('auth.register')}
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   )

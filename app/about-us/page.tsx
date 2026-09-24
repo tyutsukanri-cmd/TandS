@@ -24,6 +24,7 @@ export default function AboutUsPage() {
 
         {/* 上方 1000 x 700 框 */}
         <div
+          className="r-about-top"
           style={{
             width: '1000px',
             height: '500px',
@@ -158,6 +159,7 @@ export default function AboutUsPage() {
             }}
           >
             <div
+              className="r-form-2col"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',

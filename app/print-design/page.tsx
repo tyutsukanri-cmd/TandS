@@ -288,7 +288,7 @@ export default function PrintDesignPage() {
 
   return (
     <div style={{ paddingTop: '20px', paddingBottom: '40px' }}>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 20px' }}>
+        <div className="r-scroll-x" style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 20px' }}>
           <div style={{ width: '1500px' }}>
           <h1 style={{ marginBottom: '12px', fontSize: '26px' }}>プリントデザインプレビュー</h1>
 

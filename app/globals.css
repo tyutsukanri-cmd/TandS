@@ -141,3 +141,113 @@ input, select, textarea {
   background-color: #f8f9fa;
 }
 
+/* ===== 移动端适配（≤768px，PC 样式不受影响）===== */
+.r-hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  /* 写死 1000/1200 的框直接满宽 */
+  div[style*="1000px"],
+  div[style*="1200px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 首页 hero：上下堆叠 */
+  .r-hero-flex {
+    flex-direction: column !important;
+  }
+  .r-hero-flex > div {
+    width: 100% !important;
+  }
+  .r-hero-title {
+    font-size: 36px !important;
+  }
+
+  /* 首页 12 宫格：组上下堆，组内图/文上下堆 */
+  .r-pair-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .r-cell-pair {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 首页底部黑条标题缩小 */
+  .r-banner-title {
+    font-size: 15px !important;
+  }
+
+  /* 详情页：左右堆叠 */
+  .r-detail-flex {
+    flex-direction: column !important;
+  }
+  .r-detail-flex > div:first-child {
+    width: 100% !important;
+  }
+  .r-wrap-row {
+    flex-wrap: wrap !important;
+  }
+
+  /* 关于页：上部左右堆叠，表单 2 列变 1 列 */
+  .r-about-top {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .r-about-top > div:first-child {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .r-form-2col {
+    grid-template-columns: 1fr !important;
+  }
+  .r-form-2col > div {
+    grid-column: auto !important;
+  }
+
+  /* 底部店铺条：换行 + 小图 */
+  .r-footer-bar {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    height: auto !important;
+    padding: 10px 0 !important;
+  }
+  .r-footer-bar img {
+    height: 34px !important;
+    width: auto !important;
+  }
+
+  /* 导航：隐藏 PC 菜单，显示汉堡按钮 */
+  .r-nav-links,
+  .r-nav-auth {
+    display: none !important;
+  }
+  .r-hamburger {
+    display: flex !important;
+  }
+
+  /* 设计页宽工作台：横向滚动 */
+  .r-scroll-x {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+  }
+  .r-scroll-x > div {
+    flex-shrink: 0 !important;
+  }
+
+  /* 管理后台表格：横向滚动 */
+  .table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+}
+
