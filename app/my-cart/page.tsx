@@ -98,7 +98,8 @@ function OverlaySelect({
                 padding: '8px 10px',
                 borderRadius: '6px',
                 border: 0,
-                background: opt === value ? 'rgba(244,162,97,0.18)' : '#fff',
+                background: opt === value ? '#111' : '#fff',
+                color: opt === value ? '#fff' : '#333',
                 cursor: 'pointer',
                 fontSize: '12px',
               }}

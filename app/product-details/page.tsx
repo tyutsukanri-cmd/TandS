@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import { allocateDisplayId, createCartId, loadCartItems, saveCartItems } from '@/lib/cart'
 import { getCatalogProduct } from '@/lib/cartCatalog'
 
@@ -333,32 +332,42 @@ function ProductDetailsContent() {
   const [activeTab, setActiveTab] = useState(initialTab)
   const [selectedColor, setSelectedColor] = useState('白')
   const [selectedSize, setSelectedSize] = useState('S')
-  const [carouselIndex, setCarouselIndex] = useState(0)
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
-  const [isColorsExpanded, setIsColorsExpanded] = useState(false)
 
   useEffect(() => {
     const t = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : 0
     setActiveTab(t)
   }, [tabParam])
 
-  useEffect(() => {
-    setIsColorsExpanded(false)
-  }, [activeTab])
+  // 新版布局配置：各商品 001 目录、颜色数（01～NN 文件夹与色卡 inc/01～NN 对应）、尺码表
+  const NEW_LAYOUT: Record<number, { base: string; colorCount: number; chima: string }> = {
+    0: { base: '/01duant/001', colorCount: 9, chima: '/01duant/001/chima.png' },
+    1: { base: '/02shuixi/001', colorCount: 1, chima: '/02shuixi/001/chima.png' },
+    2: { base: '/03changxiut/001', colorCount: 2, chima: '/03changxiut/001/chima.png' },
+    3: { base: '/04obat/001', colorCount: 5, chima: '/04obat/001/chima.png' },
+    4: { base: '/05yuanlingweiyi/001', colorCount: 2, chima: '/05yuanlingweiyi/001/chima.png' },
+    5: { base: '/06daimaoweiyi/001', colorCount: 2, chima: '/06daimaoweiyi/001/chima.png' },
+    6: { base: '/07bao1/001', colorCount: 1, chima: '/07bao1/001/chima.jpg' },
+    7: { base: '/08bao2/001', colorCount: 1, chima: '/08bao2/001/chima.jpg' },
+  }
+  const layoutCfg = NEW_LAYOUT[activeTab]
+  const layoutColors = PRODUCT_TABS[activeTab].colors.slice(0, layoutCfg.colorCount)
+  const layoutColorIdx = Math.max(0, layoutColors.indexOf(selectedColor))
+  const layoutFolder = String(layoutColorIdx + 1).padStart(2, '0')
+  const layoutSizes = getCatalogProduct(activeTab).sizes
+  const pad2 = (n: number) => String(n).padStart(2, '0')
+  const categoryLabel = activeTab <= 5 ? 'T-SHIRTS' : 'TOTE BAG'
 
-  // 切换商品时，尺寸回到该商品的第一个尺码
+  // 切换商品时，尺寸回到该商品的第一个尺码，颜色回到该商品新布局的第一个颜色
   useEffect(() => {
     const p = getCatalogProduct(activeTab)
     setSelectedSize(p.sizes[0] ?? '')
+    const cfg = NEW_LAYOUT[activeTab]
+    if (cfg) {
+      const cols = PRODUCT_TABS[activeTab].colors.slice(0, cfg.colorCount)
+      setSelectedColor((prev) => (cols.includes(prev) ? prev : cols[0]))
+    }
   }, [activeTab])
-
-  // 商品1（tab0）新版布局用的颜色顺序：01～09 文件夹与色卡 inc/01～09.png 对应
-  const TAB0_COLORS = PRODUCT_TABS[0].colors
-  const tab0ColorIdx = Math.max(0, TAB0_COLORS.indexOf(selectedColor))
-  const tab0Folder = String(tab0ColorIdx + 1).padStart(2, '0')
-  const tab0Sizes = getCatalogProduct(0).sizes
-  const pad2 = (n: number) => String(n).padStart(2, '0')
-  const categoryLabel = activeTab <= 5 ? 'T-SHIRTS' : 'TOTE BAG'
 
   // 若当前商品不包含当前选中的颜色，则自动切换到第一个颜色
   useEffect(() => {
@@ -370,33 +379,6 @@ function ProductDetailsContent() {
   }, [activeTab, selectedColor])
 
   const product = PRODUCT_TABS[activeTab]
-  const COLLAPSED_COLOR_COUNT = 4
-  const useColorCollapse = product.id === 0 && product.colors.length > COLLAPSED_COLOR_COUNT
-  const displayedColors = (() => {
-    if (!useColorCollapse || isColorsExpanded) return product.colors
-    const first = product.colors.slice(0, COLLAPSED_COLOR_COUNT)
-    if (first.includes(selectedColor)) return first
-    return [selectedColor, ...first.filter((c) => c !== selectedColor)].slice(0, COLLAPSED_COLOR_COUNT)
-  })()
-  const hiddenColorCount = useColorCollapse && !isColorsExpanded ? product.colors.length - displayedColors.length : 0
-  const carouselImages = product.imagesByColor[selectedColor] ?? product.imagesByColor['白'] ?? []
-  const safeCarouselIndex = carouselImages.length > 0 ? Math.min(carouselIndex, carouselImages.length - 1) : 0
-  const mainImageUrl = carouselImages[safeCarouselIndex] || ''
-  const bottomImageUrl = product.bottomImage || ''
-
-  // 切换商品/颜色时，轮播回到第一张
-  useEffect(() => {
-    setCarouselIndex(0)
-  }, [activeTab, selectedColor])
-
-  // 5 秒自动轮播（仅当该颜色下有多张图）
-  useEffect(() => {
-    if (carouselImages.length <= 1) return
-    const t = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % carouselImages.length)
-    }, 5000)
-    return () => clearInterval(t)
-  }, [carouselImages.length])
 
   return (
     <div className="container" style={{ paddingTop: '20px', paddingBottom: '40px' }}>
@@ -430,8 +412,8 @@ function ProductDetailsContent() {
           </div>
         </div>
 
-        {activeTab === 0 ? (
-          /* 商品1新版布局：1200宽，左45%四图，右详情 */
+        {layoutCfg && (
+          /* 新版布局：1200宽，左6图，右详情 */
           <div style={{ width: '1200px', maxWidth: '100%', margin: '0 auto' }}>
             <style>{`.pdesc-scroll::-webkit-scrollbar{width:6px}.pdesc-scroll::-webkit-scrollbar-track{background:transparent}.pdesc-scroll::-webkit-scrollbar-thumb{background:#000;border-radius:3px}`}</style>
             <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
@@ -440,7 +422,7 @@ function ProductDetailsContent() {
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <img
                     key={n}
-                    src={`/01duant/001/${tab0Folder}/0${n}.png`}
+                    src={`${layoutCfg.base}/${layoutFolder}/0${n}.png`}
                     alt={`${product.name} ${selectedColor} ${n}`}
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />
@@ -481,7 +463,7 @@ function ProductDetailsContent() {
                 {/* 颜色 */}
                 <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>カラー</div>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-                  {TAB0_COLORS.map((color, idx) => {
+                  {layoutColors.map((color, idx) => {
                     const sw = String(idx + 1).padStart(2, '0')
                     return (
                       <button
@@ -498,7 +480,7 @@ function ProductDetailsContent() {
                           height: '52px',
                         }}
                       >
-                        <img src={`/01duant/001/inc/${sw}.png`} alt={color} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        <img src={`${layoutCfg.base}/inc/${sw}.png`} alt={color} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </button>
                     )
                   })}
@@ -507,7 +489,7 @@ function ProductDetailsContent() {
                 {/* 尺寸 */}
                 <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>サイズ</div>
                 <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-                  {tab0Sizes.map((size) => (
+                  {layoutSizes.map((size) => (
                     <button
                       key={size}
                       type="button"
@@ -528,7 +510,7 @@ function ProductDetailsContent() {
                   ))}
                 </div>
                 {/* 尺码表 */}
-                <img src="/01duant/001/chima.png" alt="サイズ表" style={{ width: '100%', height: 'auto', display: 'block', marginTop: '16px' }} />
+                <img src={layoutCfg.chima} alt="サイズ表" style={{ width: '100%', height: 'auto', display: 'block', marginTop: '16px' }} />
                 {/* 加入购物车 */}
                 <button
                   type="button"
@@ -580,275 +562,6 @@ function ProductDetailsContent() {
               </div>
             </div>
           </div>
-        ) : (
-          <>
-        {/* 商品名 */}
-        <h2 style={{ marginBottom: '20px', fontSize: '22px' }}>{product.name}</h2>
-
-        {/* 1000×600 主框（无底色） */}
-        <div
-          style={{
-            width: '1000px',
-            minHeight: '500px',
-            marginBottom: '24px',
-            display: 'flex',
-            gap: '24px',
-            alignItems: 'flex-start',
-          }}
-        >
-          {/* 左侧 300×600 图框（短袖T恤：按颜色轮播 + 圆点控制） */}
-          <div
-            style={{
-              width: '300px',
-              height: '500px',
-              border: '1px solid #e0e0e0',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#f8f8f8',
-              position: 'relative',
-            }}
-          >
-            {mainImageUrl ? (
-              <Image src={mainImageUrl} alt={`${product.name} ${selectedColor}`} width={280} height={460} style={{ objectFit: 'contain' }} />
-            ) : (
-              <span style={{ color: '#999', fontSize: '14px' }}>图片链接占位（后续补充）</span>
-            )}
-
-            {/* 圆点（仅当该颜色下 >=2 张图时显示） */}
-            {carouselImages.length >= 2 && (
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '12px',
-                  left: 0,
-                  right: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '8px',
-                }}
-              >
-                {carouselImages.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCarouselIndex(idx)}
-                    aria-label={`切换到第 ${idx + 1} 张`}
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '999px',
-                      border: '1px solid rgba(0,0,0,0.25)',
-                      backgroundColor: idx === safeCarouselIndex ? '#f4a261' : 'rgba(255,255,255,0.85)',
-                      cursor: 'pointer',
-                      padding: 0,
-                    }}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* 右侧区域 */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {/* 商品描述 约 276px（与颜色150+加入购物车150+间距共600） */}
-            <div
-              style={{
-                height: isDescriptionExpanded ? 'auto' : '276px',
-                padding: '16px',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px',
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: '#fff',
-                position: 'relative',
-                zIndex: isDescriptionExpanded ? 100 : 1,
-                boxShadow: isDescriptionExpanded ? '0 4px 12px rgba(0,0,0,0.15)' : 'none',
-              }}
-            >
-              {/* 标题 */}
-              <div
-                style={{
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  color: '#333',
-                  marginBottom: '12px',
-                }}
-              >
-                商品説明
-              </div>
-              
-              {/* 内容区域 */}
-              <div
-                style={{
-                  height: isDescriptionExpanded ? 'auto' : '200px',
-                  overflowY: isDescriptionExpanded ? 'visible' : 'auto',
-                }}
-              >
-                <div style={{ fontSize: '14px', lineHeight: 1.6, color: '#333', whiteSpace: 'pre-line' }}>
-                  {PRODUCT_DESCRIPTIONS[product.id] || '商品説明がありません'}
-                </div>
-              </div>
-              
-              {/* 展开/收起按钮 - 始终固定在底部 */}
-              {PRODUCT_DESCRIPTIONS[product.id] && (
-                <div style={{ textAlign: 'center', marginTop: '12px' }}>
-                  <button
-                    type="button"
-                    onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                    style={{
-                      padding: '6px 16px',
-                      backgroundColor: '#f4a261',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '14px',
-                    }}
-                  >
-                    {isDescriptionExpanded ? '表示を戻す' : '全文を表示'}
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* 颜色选择 */}
-            <div
-              style={{
-                height: useColorCollapse && isColorsExpanded ? 'auto' : '150px',
-                padding: '16px',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
-                flexShrink: 0,
-                position: 'relative',
-                zIndex: isColorsExpanded ? 50 : 1,
-                backgroundColor: '#fff',
-                boxShadow: isColorsExpanded ? '0 4px 12px rgba(0,0,0,0.15)' : 'none',
-              }}
-            >
-              <div style={{ fontSize: '14px', fontWeight: 600 }}>カラー</div>
-              <div style={{ display: 'flex', flexWrap: isColorsExpanded ? 'wrap' : 'nowrap', gap: '12px' }}>
-                {displayedColors.map((color) => (
-                  <button
-                    key={color}
-                    type="button"
-                    onClick={() => setSelectedColor(color)}
-                    style={{
-                      padding: '8px 16px',
-                      border: `2px solid ${selectedColor === color ? '#f4a261' : '#ddd'}`,
-                      borderRadius: '6px',
-                      backgroundColor: selectedColor === color ? 'rgba(244,162,97,0.2)' : '#fff',
-                      cursor: 'pointer',
-                      fontSize: product.id === 0 || product.id === 3 ? '12px' : '14px',
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
-                    }}
-                  >
-                    {color}
-                  </button>
-                ))}
-              </div>
-              {useColorCollapse && (
-                <div style={{ textAlign: 'center' }}>
-                  <button
-                    type="button"
-                    onClick={() => setIsColorsExpanded(!isColorsExpanded)}
-                    style={{
-                      padding: '6px 16px',
-                      backgroundColor: '#f4a261',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '14px',
-                    }}
-                  >
-                    {isColorsExpanded ? '表示を戻す' : `もっと見る（+${hiddenColorCount}）`}
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* 加入购物车 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexShrink: 0,
-                position: 'relative',
-                zIndex: isColorsExpanded ? 101 : 2,
-                backgroundColor: '#f5f5f5',
-                padding: '6px 0',
-              }}
-            >
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  ;(async () => {
-                    const catalogProduct = getCatalogProduct(activeTab)
-                    const color = catalogProduct.colors.includes(selectedColor) ? selectedColor : catalogProduct.colors[0]
-                    const size = catalogProduct.sizes[0] ?? ''
-
-                    let username = 'guest'
-                    try {
-                      const r = await fetch('/api/user/me')
-                      if (r.ok) {
-                        const data = await r.json()
-                        username = data?.user?.username ?? 'guest'
-                      }
-                    } catch {}
-
-                    const displayId = allocateDisplayId(username)
-                    const nextItems = loadCartItems()
-                    nextItems.push({
-                      cartId: createCartId(),
-                      displayId,
-                      productTabId: activeTab,
-                      color,
-                      size,
-                      quantity: 1,
-                      positions: { p1: '', p2: '', p3: '', p4: '' },
-                      note: '',
-                    })
-                    saveCartItems(nextItems)
-                    router.push('/my-cart')
-                  })()
-                }}
-                style={{ padding: '12px 32px', fontSize: '16px' }}
-              >
-                カートに追加
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* 下方居中 700×300 框 */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-          <div
-            style={{
-              width: '700px',
-              height: '300px',
-              border: '1px solid #e0e0e0',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              position: 'relative',
-              backgroundColor: '#f8f8f8',
-            }}
-          >
-            {bottomImageUrl ? (
-              <Image src={bottomImageUrl} alt={`${product.name} 展示图`} fill style={{ objectFit: 'fill' }} />
-            ) : (
-              <span style={{ color: '#999', fontSize: '14px' }}>图片链接占位（根据选项卡选择商品变化，后续补充）</span>
-            )}
-          </div>
-        </div>
-          </>
         )}
       </div>
   )

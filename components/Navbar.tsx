@@ -96,6 +96,7 @@ export default function Navbar() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          position: 'relative',
         }}
       >
         <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -123,6 +124,11 @@ export default function Navbar() {
               gap: '20px',
               fontSize: '14px',
               textTransform: 'uppercase',
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(calc(-50% + 2cm), -50%)',
+              whiteSpace: 'nowrap',
             }}
           >
             {navItems.map((item) => {

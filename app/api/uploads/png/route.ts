@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const fileNameRaw = String(form.get('fileName') || '')
     const dateFolderRaw = String(form.get('dateFolder') || '')
 
-    if (!file) {
+    if (!(file instanceof File)) {
       return NextResponse.json({ error: 'ファイルがありません' }, { status: 400 })
     }
     if (file.type !== 'image/png' && !file.name.toLowerCase().endsWith('.png')) {
