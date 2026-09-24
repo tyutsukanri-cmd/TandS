@@ -6,7 +6,7 @@ import { I18nProvider } from '@/components/I18nProvider'
 import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
-  title: '中通商事',
+  title: 'オリジナルTシャツ　T＆S',
   description: 'アパレル商品の展示・受注管理システム',
 }
 

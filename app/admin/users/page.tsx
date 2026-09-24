@@ -71,6 +71,34 @@ export default function AdminUsersPage() {
     }
   }
 
+  const handleDelete = async (userId: number, username: string) => {
+    if (!confirm(`确定要删除用户 ${username} 吗？此操作不可恢复。`)) {
+      return
+    }
+
+    try {
+      const res = await fetch(`/api/admin/users/${userId}`, {
+        method: 'DELETE',
+      })
+
+      if (res.ok) {
+        setUsers((prev) => prev.filter((u) => u.id !== userId))
+      } else if (res.status === 401 || res.status === 403) {
+        const data = await res.json().catch(() => null)
+        if (data?.error) {
+          alert(data.error)
+        } else {
+          router.push('/login')
+        }
+      } else {
+        const data = await res.json().catch(() => null)
+        alert(data?.error || '删除用户失败')
+      }
+    } catch (error) {
+      setError('网络错误，请稍后重试')
+    }
+  }
+
   if (loading) {
     return (
       <div className="container" style={{ textAlign: 'center', padding: '40px' }}>
@@ -126,20 +154,38 @@ export default function AdminUsersPage() {
                     <td>{user.orderCount}</td>
                     <td>{new Date(user.createdAt).toLocaleString('zh-CN')}</td>
                     <td>
-                      <button
-                        onClick={() => handleResetPassword(user.id, user.username)}
-                        style={{
-                          padding: '4px 8px',
-                          borderRadius: '4px',
-                          fontSize: '12px',
-                          background: '#28a745',
-                          color: 'white',
-                          border: 'none',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        重置密码
-                      </button>
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        <button
+                          onClick={() => handleResetPassword(user.id, user.username)}
+                          style={{
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            fontSize: '12px',
+                            background: '#28a745',
+                            color: 'white',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          重置密码
+                        </button>
+                        {user.role !== 'admin' && (
+                          <button
+                            onClick={() => handleDelete(user.id, user.username)}
+                            style={{
+                              padding: '4px 8px',
+                              borderRadius: '4px',
+                              fontSize: '12px',
+                              background: '#dc3545',
+                              color: 'white',
+                              border: 'none',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            删除
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
