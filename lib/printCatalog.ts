@@ -72,6 +72,13 @@ export function getPrintBaseImages(tabId: number, color: string) {
     return fallback
   }
 
+  // 9) ベーシックTシャツA001 public/09duant02（白：正面w1/背面w2，黑：正面b1/背面b2）
+  if (tabId === 8) {
+    if (color === 'ホワイト') return { left: '/09duant02/w1.jpg', right: '/09duant02/w2.jpg' }
+    if (color === 'ブラック') return { left: '/09duant02/b1.jpg', right: '/09duant02/b2.jpg' }
+    return fallback
+  }
+
   return fallback
 }
 

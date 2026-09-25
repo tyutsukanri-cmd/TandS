@@ -9,7 +9,7 @@ export type CartCatalogProduct = {
 export const CART_CATALOG: CartCatalogProduct[] = [
   {
     tabId: 0,
-    name: 'ベーシックTシャツ',
+    name: 'ベーシックTシャツA002',
     colors: ['ホワイト', 'ブラック', 'アプリコット', 'ピンク', 'グレー', 'ネイビー', 'ピンクグラデーション', 'ブルーグラデーション', 'グリーングラデーション'],
     imagesByColor: {
       ホワイト: ['/01duant/wc11.png', '/01duant/wc1.png', '/01duant/wc2.png', '/01duant/wc3.png'],
@@ -94,6 +94,16 @@ export const CART_CATALOG: CartCatalogProduct[] = [
       ナチュラル: ['/08bao2/mi2.png'],
     },
     sizes: ['30*40*10cm'],
+  },
+  {
+    tabId: 8,
+    name: 'ベーシックTシャツA001',
+    colors: ['ホワイト', 'ブラック'],
+    imagesByColor: {
+      ホワイト: ['/09duant02/001/01/01.jpg', '/09duant02/001/01/02.jpg', '/09duant02/001/01/03.jpg', '/09duant02/001/01/04.jpg', '/09duant02/001/01/05.jpg', '/09duant02/001/01/06.jpg'],
+      ブラック: ['/09duant02/001/02/01.jpg', '/09duant02/001/02/02.jpg', '/09duant02/001/02/03.jpg', '/09duant02/001/02/04.jpg', '/09duant02/001/02/05.jpg', '/09duant02/001/02/06.jpg'],
+    },
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
   },
 ]
 

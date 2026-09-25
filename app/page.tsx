@@ -101,15 +101,19 @@ export default function Home() {
                 <div>
                   <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>01</div>
                   <div style={{ height: '16px' }} />
-                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ベーシックTシャツ</div>
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ベーシックTシャツA002</div>
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
                     100％高品質コットン
                     <br />
                     柔らかく肌触りの良い仕上がりとなっています
                   </div>
                   <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=8" style={{ display: 'inline-block', fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px' }}>
+                    A001商品をすべて見る →
+                  </Link>
+                  <br />
                   <Link href="/product-details?tab=0" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
-                    商品をすべて見る →
+                    A002商品をすべて見る →
                   </Link>
                 </div>
               </div>

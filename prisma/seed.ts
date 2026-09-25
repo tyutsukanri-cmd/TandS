@@ -25,7 +25,7 @@ async function main() {
   // 创建示例商品
   const products = [
     {
-      name: 'ベーシックTシャツ',
+      name: 'ベーシックTシャツA002',
       description: '商品说明',
       imageUrl: '/images/1tsyatsu.jpg',
       sizes: JSON.stringify(['S', 'M', 'L', 'XL', 'XXL', 'XXXL']),

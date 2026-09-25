@@ -29,7 +29,7 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 ・上質なコットン100%：肌に優しく馴染む、柔らかく滑らかなプレミアムな肌触り。
 ・優れた通気性と快適性：長時間着用しても蒸れにくく、シーズンを問わずストレスフリーな着心地を提供します。
 ■ 生地感（THICKNESS & WEIGHT）
-・6.7oz（オンス）ヘビーウェイト：しっかりとした肉厚感のある生地を採用。
+・5.0oz（オンス）ヘビーウェイト：しっかりとした肉厚感のある生地を採用。
 ・高い耐久性と透け防止：1枚で着用しても透けにくく、度重なる洗濯でも型崩れしにくいタフな仕上がりです。
 ■ デザイン＆シルエット（DESIGN & SILHOUETTE）
 ・タイムレスなミニマルデザイン：テイストを選ばず、ストリート、カジュアル、きれいめまで幅広くコーディネート可能。
@@ -74,17 +74,17 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 ※ご覧いただくモニター環境や光の加減により、掲載画像と実際の商品で色味が若干異なる場合がございます。
 `,
   2: `【コンセプト】
-イージーケアと上質な着心地を両立。
+極上の肌触りと、美しいシルエット。
 1枚でもインナーでも決まる、洗練された大人のロングスリーブTシャツ。
-コットンの柔らかさとポリエステルの機能性を兼ね備えたハイブリッド素材を採用。7.0ozのしっかりとした生地感で、秋口から春先までロングシーズン快適に着用できる万能な定番アイテムです。
+厳選された上質なコットンを100%使用。7.0ozのしっかりとしたヘビーウェイトな生地感で、秋口から春先までロングシーズン快適に着用できる万能な定番アイテムです。
 
 【DETAIL】
 ■ 素材（FABRIC）
-・T/C（ポリエステル60% / コットン40%）混紡素材：肌触りの良いコットンの風合いを残しながら、ポリエステルの耐久性と軽量性をプラス。
-・優れた吸汗速乾性とイージーケア：通気性が高く、長時間の着用でもサラリとした快適な着心地をキープ。洗濯後も乾きやすく、シワになりにくいイージーケア仕様です。
+・上質なコットン100%：厳選された高品質コットンを使用し、肌に優しく馴染む柔らかく滑らかなプレミアムな肌触りを実現。
+・優れた通気性と快適性：天然素材ならではの高い吸湿性と通気性で、長時間の着用でも蒸れにくく、シーズンを問わずストレスフリーな着心地を提供します。
 ■ 生地感（THICKNESS & WEIGHT）
-・7.0oz（オンス）ヘビーウェイト：長袖Tシャツに最適な、程よい肉厚感とハリのある生地を採用。
-・優れた耐久性と透け防止：1枚で着用しても透けにくく、度重なる洗濯でも襟元や袖口がヨレにくいタフな仕上がりです。
+・7.0oz（オンス）ヘビーウェイト：長袖Tシャツに最適な、程よい肉厚感とハリのある高密度生地を採用。
+・優れた耐久性と透け防止：1枚で着用しても透けにくく、度重なる着用や洗濯でも襟元や袖口がヨレにくいタフな仕上がりです。
 ■ デザイン＆シルエット（DESIGN & SILHOUETTE）
 ・ミニマルな洗練デザイン：タイムレスなデザインで、ストリート、カジュアル、きれいめスタイルのインナーまで幅広く対応。
 ・ジェンダーレスなリラックスフィット：肩や身幅にほどよいゆとりを持たせたトレンドシルエットで、男女問わずスマートに着用いただけます。
@@ -103,15 +103,15 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
   3: `【コンセプト】
 ブランド最高峰の品質と、計算し尽くされたオーバーシルエット。
 1枚でスタイルを格上げする、プレミアム・ヘビーウェイトTシャツ。
-当ラインナップの中で最高品質を誇る、こだわりを凝縮したフラッグシップモデル。8.1ozという圧巻の超ヘビーウェイト生地を採用しながらも、野暮ったさを一切感じさせない上品なハリ感と美しいドレープ（落ち感）を実現。圧倒的な存在感を放つ、大人のための最高峰の1着です。
+当ラインナップの中で最高品質を誇る、こだわりを凝縮したフラッグシップモデル。230g高密度ヘビーウェイトコットン生地を採用しながらも、野暮ったさを一切感じさせない上品なハリ感と美しいドレープ（落ち感）を実現。圧倒的な存在感を放つ、大人のための最高峰の1着です。
 
 【DETAIL】
 ■ 素材（PREMIUM FABRIC）
-・厳選 T/Cハイブリッド素材（ポリエステル60% / コットン40%）：コットンの肌触りの良さにポリエステルの機能性を融合。8.1ozの重厚感を感じさせない滑らかな肌触りと高級感のある風合いに仕上げました。
-・優れた速乾性とイージーケア：シワになりにくく、洗濯後の乾きも早いハイパフォーマンス仕様。通気性にも優れ、終日快適な着用感をキープします。
+・厳選された100%プレミアムコットン：厳選された高品質コットンを100%使用。天然素材ならではの滑らかで肌に吸い付くような上質な肌触りと、着込むほどに馴染む極上の風合いに仕上げました。
+・優れた通気性と快適性：高密度でありながら通気性に優れ、肌への刺激が少ないストレスフリーな仕様。シーズンを問わず終日快適な着用感をキープします。
 ■ 生地感（THICKNESS & WEIGHT）
-・8.1oz（オンス）最高峰超ヘビーウェイト：極限まで肉厚感を高めた8.1オンス生地。体のラインを拾わない美しい立ち姿をキープします。
-・完全透け防止＆抜群のタフネス：1枚での着用も安心の透け感ゼロ。度重なる着用や洗濯でも首元がヨレず、美しいシルエットが長く続きます。
+・230g/㎡ 最高峰ヘビーウェイト：極限まで密度を高めた230g/㎡の肉厚コットン生地。しっかりとしたハリとコシがあり、体のラインを拾わない美しい立ち姿をキープします。
+・完全透け防止＆抜群のタフネス：1枚での着用も安心の透け感ゼロ。度重なる着用や洗濯でも首元がヨレにくく、美しいシルエットが長く続きます。
 ■ デザイン＆シルエット（DESIGN & SILHOUETTE）
 ・洗練された絶妙なビッグシルエット：肩を大きく落としたドロップショルダーと身幅に贅沢なゆとりを持たせたカッティング。リラックス感がありながらも品のある仕上がりです。
 ・ジェンダーレスデザイン：ストリート、モード、カジュアルまで、男女問わず1枚でトレンド感のあるスタイリングが完成します。
@@ -237,13 +237,40 @@ const PRODUCT_DESCRIPTIONS: Record<number, string> = {
 ■ 注意事項
 ※ご覧いただくモニター環境や光の加減により、掲載画像と実際の商品で色味が若干異なる場合がございます。
 `,
+  8: `【コンセプト】
+王道を極めた、毎日着たくなる着心地。
+5.6ozの絶妙な生地感で、オールシーズン活躍する万能スタンダードTシャツ。
+厳選された上質なコットン100%を使用し、Tシャツの“黄金スペック”と呼ばれる5.6オンス生地を採用。厚すぎず薄すぎない絶妙なバランスで、1枚での着用はもちろん、シャツやアウターのインナーとしても美しいシルエットをキープする、ワードローブに欠かせない定番の1着です。
+
+【DETAIL】
+■ 素材（FABRIC）
+・上質なコットン100%：肌に優しく馴染む、柔らかく滑らかなプレミアムな肌触り。
+・優れた通気性と快適性：吸湿性・通気性に優れ、長時間の着用でもストレスフリーで快適な着心地を提供します。
+■ 生地感（THICKNESS & WEIGHT）
+・5.6oz（オンス）スタンダードウェイト：1枚着としてもインナーとしても重宝する、バランスの取れた絶妙な肉厚感。
+・型崩れしにくい高耐久仕様：適度なハリ感があり、度重なる着用や洗濯でも首元がヨレにくく、綺麗なフォルムを長く保ちます。
+■ デザイン＆シルエット（DESIGN & SILHOUETTE）
+・タイムレスな王道デザイン：トレンドや年代を問わず、ストリート、カジュアル、きれいめまであらゆるスタイルに対応。
+・ユニセックスデザイン：SからXXLまでの豊富なサイズ展開で、ジャストサイズでのスマートな着こなしから、ワンサイズ上げたリラックススタイルまでお好みのシルエットを選べます。
+■ カラーバリエーション（COLOR）
+スタイリングのベースとなる、最も汎用性の高い王道の2色展開。
+・ホワイト
+・ブラック
+
+【SIZE & INFORMATION】
+■ サイズ展開（SIZE）
+S / M / L / XL / XXL
+※ユニセックスでお使いいただけるベーシックなシルエットです。
+※商品寸法は手作業で採寸しているため、1〜2cm程度の個体差が生じる場合がございます。予めご了承ください。
+■ 注意事項
+※ご覧いただくモニター環境や光の加減により、掲載画像と実際の商品で色味が若干異なる場合がございます。`,
 }
 
 // 与 page.tsx 中 6 个商品分类对应的选项卡数据
 const PRODUCT_TABS: ProductTab[] = [
   {
     id: 0,
-    name: 'ベーシックTシャツ',
+    name: 'ベーシックTシャツA002',
     colors: ['ホワイト', 'ブラック', 'アプリコット', 'ピンク', 'グレー', 'ネイビー', 'ピンクグラデーション', 'ブルーグラデーション', 'グリーングラデーション'],
     imagesByColor: {
       ホワイト: ['/01duant/wc11.png', '/01duant/wc1.png', '/01duant/wc2.png', '/01duant/wc3.png'],
@@ -329,12 +356,25 @@ const PRODUCT_TABS: ProductTab[] = [
     },
     bottomImage: '/08bao2/youdi1.jpg',
   },
+  {
+    id: 8,
+    name: 'ベーシックTシャツA001',
+    colors: ['ホワイト', 'ブラック'],
+    imagesByColor: {
+      ホワイト: ['/09duant02/001/01/01.jpg', '/09duant02/001/01/02.jpg', '/09duant02/001/01/03.jpg', '/09duant02/001/01/04.jpg', '/09duant02/001/01/05.jpg', '/09duant02/001/01/06.jpg'],
+      ブラック: ['/09duant02/001/02/01.jpg', '/09duant02/001/02/02.jpg', '/09duant02/001/02/03.jpg', '/09duant02/001/02/04.jpg', '/09duant02/001/02/05.jpg', '/09duant02/001/02/06.jpg'],
+    },
+    bottomImage: '/09duant02/001/01/01.jpg',
+  },
 ]
+
+// 选项卡显示顺序：第9商品（id 8）排第一，其余按原编号
+const DISPLAY_ORDER = [8, 0, 1, 2, 3, 4, 5, 6, 7]
 
 function ProductDetailsContent() {
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
-  const initialTab = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : 0
+  const initialTab = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : DISPLAY_ORDER[0]
   const router = useRouter()
 
   const [activeTab, setActiveTab] = useState(initialTab)
@@ -343,12 +383,12 @@ function ProductDetailsContent() {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 
   useEffect(() => {
-    const t = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : 0
+    const t = tabParam !== null ? Math.min(Math.max(0, parseInt(tabParam, 10)), PRODUCT_TABS.length - 1) : DISPLAY_ORDER[0]
     setActiveTab(t)
   }, [tabParam])
 
-  // 新版布局配置：各商品 001 目录、颜色数（01～NN 文件夹与色卡 inc/01～NN 对应）、尺码表
-  const NEW_LAYOUT: Record<number, { base: string; colorCount: number; chima: string }> = {
+  // 新版布局配置：各商品 001 目录、颜色数（01～NN 文件夹与色卡 inc/01～NN 对应）、尺码表、展示图扩展名
+  const NEW_LAYOUT: Record<number, { base: string; colorCount: number; chima: string; ext?: string }> = {
     0: { base: '/01duant/001', colorCount: 9, chima: '/01duant/001/chima.png' },
     1: { base: '/02shuixi/001', colorCount: 1, chima: '/02shuixi/001/chima.png' },
     2: { base: '/03changxiut/001', colorCount: 2, chima: '/03changxiut/001/chima.png' },
@@ -357,6 +397,7 @@ function ProductDetailsContent() {
     5: { base: '/06daimaoweiyi/001', colorCount: 2, chima: '/06daimaoweiyi/001/chima.png' },
     6: { base: '/07bao1/001', colorCount: 1, chima: '/07bao1/001/chima.jpg' },
     7: { base: '/08bao2/001', colorCount: 1, chima: '/08bao2/001/chima.jpg' },
+    8: { base: '/09duant02/001', colorCount: 2, chima: '/09duant02/001/chima.png', ext: 'jpg' },
   }
   const layoutCfg = NEW_LAYOUT[activeTab]
   const layoutColors = PRODUCT_TABS[activeTab].colors.slice(0, layoutCfg.colorCount)
@@ -364,7 +405,7 @@ function ProductDetailsContent() {
   const layoutFolder = String(layoutColorIdx + 1).padStart(2, '0')
   const layoutSizes = getCatalogProduct(activeTab).sizes
   const pad2 = (n: number) => String(n).padStart(2, '0')
-  const categoryLabel = activeTab <= 5 ? 'T-SHIRTS' : 'TOTE BAG'
+  const categoryLabel = activeTab === 6 || activeTab === 7 ? 'TOTE BAG' : 'T-SHIRTS'
 
   // 切换商品时，尺寸回到该商品的第一个尺码，颜色回到该商品新布局的第一个颜色
   useEffect(() => {
@@ -399,7 +440,9 @@ function ProductDetailsContent() {
               gap: '6px',
             }}
           >
-            {PRODUCT_TABS.map((tab) => (
+            {DISPLAY_ORDER.map((id) => {
+              const tab = PRODUCT_TABS[id]
+              return (
               <Link key={tab.id} href={`/product-details?tab=${tab.id}`} onClick={() => setActiveTab(tab.id)}>
                 <button
                   type="button"
@@ -416,7 +459,8 @@ function ProductDetailsContent() {
                   {tab.name}
                 </button>
               </Link>
-            ))}
+              )
+            })}
           </div>
         </div>
 
@@ -430,7 +474,7 @@ function ProductDetailsContent() {
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <img
                     key={n}
-                    src={`${layoutCfg.base}/${layoutFolder}/0${n}.png`}
+                    src={`${layoutCfg.base}/${layoutFolder}/0${n}.${layoutCfg.ext ?? 'png'}`}
                     alt={`${product.name} ${selectedColor} ${n}`}
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />
@@ -438,7 +482,7 @@ function ProductDetailsContent() {
               </div>
               {/* 右侧详情 */}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '14px', color: '#333' }}>{pad2(activeTab + 1)} / {pad2(PRODUCT_TABS.length)}</div>
+                <div style={{ fontSize: '14px', color: '#333' }}>{pad2(DISPLAY_ORDER.indexOf(activeTab) + 1)} / {pad2(PRODUCT_TABS.length)}</div>
                 <div style={{ height: '16px' }} />
                 <div style={{ fontSize: '12px', letterSpacing: '2px', color: '#666' }}>{categoryLabel}</div>
                 <div style={{ fontSize: '28px', fontWeight: 700, color: '#111', marginTop: '8px', marginBottom: '16px' }}>{product.name}</div>
