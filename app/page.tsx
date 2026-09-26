@@ -105,7 +105,7 @@ export default function Home() {
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
                     100％高品質コットン
                     <br />
-                    柔らかく肌触りの良い仕上がりとなっています
+                    オールシーズン活躍する万能スタンダードTシャツ。
                   </div>
                   <div style={{ height: '16px' }} />
                   <Link href="/product-details?tab=8" style={{ display: 'inline-block', fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px' }}>
@@ -131,7 +131,7 @@ export default function Home() {
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
                     100％高品質コットン
                     <br />
-                    通気性にも優れており、長時間の着用でも快適です
+                    シンプルながらも圧倒的な存在感を放ち、大人のスタイリングにこなれ感をプラスします。
                   </div>
                   <div style={{ height: '16px' }} />
                   <Link href="/product-details?tab=1" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
@@ -150,7 +150,7 @@ export default function Home() {
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
                     100％高品質コットン
                     <br />
-                    柔らかく肌触りの良い仕上がりとなっています
+                    秋口から春先までロングシーズン快適に着用できる万能な定番アイテムです。
                   </div>
                   <div style={{ height: '16px' }} />
                   <Link href="/product-details?tab=2" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
@@ -172,7 +172,7 @@ export default function Home() {
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
                     100％高品質コットン
                     <br />
-                    程よい厚みで、透けにくく耐久性にも優れています
+                    ブランド最高峰の品質と、計算し尽くされたオーバーシルエット。
                   </div>
                   <div style={{ height: '16px' }} />
                   <Link href="/product-details?tab=3" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
@@ -195,9 +195,9 @@ export default function Home() {
                   <div style={{ height: '16px' }} />
                   <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>スウェット</div>
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                    本製品は100％高品質スウェット素材を使用し
+                    T/C混紡スウェット
                     <br />
-                    柔らかく肌触りの良い仕上がりとなっています
+                    洗練されたシルエットとイージーケアを兼ね備えた、大人の万能スウェット。
                   </div>
                   <div style={{ height: '16px' }} />
                 <Link href="/product-details?tab=4" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
@@ -217,9 +217,9 @@ export default function Home() {
                   <div style={{ height: '16px' }} />
                   <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>パーカー</div>
                   <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
-                    本製品は100％高品質スウェット素材を使用し
+                    T/C混紡スウェット
                     <br />
-                    柔らかく肌触りの良い仕上がりとなっています
+                    1枚でスタイリングが決まる、洗練された大人のデイリーパーカー。
                   </div>
                   <div style={{ height: '16px' }} />
                 <Link href="/product-details?tab=5" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
