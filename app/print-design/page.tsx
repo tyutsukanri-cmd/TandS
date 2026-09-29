@@ -93,6 +93,15 @@ function getDefaultPrint(tabId: number) {
       p4: { x: 210, y: 360, scale: 1.1 },
     }
   }
+  if (tabId === 9) {
+    // ブランケット：只印一面，只用位置1，其余锁定
+    return {
+      p1: { x: 220, y: 330, scale: 1.4 },
+      p2: { x: 0, y: 0, scale: 1 }, // 位置2锁定，不使用
+      p3: { x: 0, y: 0, scale: 1 }, // 位置3锁定，不使用
+      p4: { x: 0, y: 0, scale: 1 }, // 位置4锁定，不使用
+    }
+  }
   // 默认情况（不应该到达这里）
   return {
     p1: { x: 320, y: 270, scale: 0.6 },
@@ -227,6 +236,11 @@ export default function PrintDesignPage() {
       setError('この商品は印刷できません。')
       return
     }
+    // 商品 10（ブランケット）只允许位置1，其余锁定
+    if (current.productTabId === 9 && pos !== 'p1') {
+      setError('この商品は印刷できません。')
+      return
+    }
 
     const suffix = posSuffix(pos)
     const prefix = safeFileSegment(current.displayId || username)
@@ -335,7 +349,11 @@ export default function PrintDesignPage() {
                   overflow: 'hidden',
                 }}
               >
-                <Image src="/images/weizhi1.png" alt="weizhi1" fill style={{ objectFit: 'contain' }} />
+                {current?.productTabId === 9 ? (
+                  <Image src="/10tan/shuoming1.png" alt="shuoming1" fill style={{ objectFit: 'contain' }} />
+                ) : (
+                  <Image src="/images/weizhi1.png" alt="weizhi1" fill style={{ objectFit: 'contain' }} />
+                )}
               </div>
               <div
                 style={{
@@ -348,7 +366,9 @@ export default function PrintDesignPage() {
                   overflow: 'hidden',
                 }}
               >
-                <Image src="/images/weizhi2.png" alt="weizhi2" fill style={{ objectFit: 'contain' }} />
+                {current?.productTabId === 9 ? null : (
+                  <Image src="/images/weizhi2.png" alt="weizhi2" fill style={{ objectFit: 'contain' }} />
+                )}
               </div>
             </div>
           </div>
@@ -392,7 +412,7 @@ export default function PrintDesignPage() {
               })}
             </div>
 
-            {/* 右预览 560x700 */}
+            {/* 右预览 560x700（商品10只印一面，右侧留空） */}
             <div
               style={{
                 width: '560px',
@@ -404,6 +424,8 @@ export default function PrintDesignPage() {
                 overflow: 'hidden',
               }}
             >
+              {current?.productTabId === 9 ? null : (
+                <>
               <Image src={baseImages.right} alt="right-preview" fill style={{ objectFit: 'contain', transform: 'scale(1.12)', transformOrigin: 'center' }} />
 
               {/* 位置4 叠加在右图 */}
@@ -427,6 +449,8 @@ export default function PrintDesignPage() {
                   </div>
                 )
               })()}
+                </>
+              )}
             </div>
 
             {/* 控制区 356x700 */}
@@ -446,8 +470,9 @@ export default function PrintDesignPage() {
               {(['p1', 'p2', 'p3', 'p4'] as PosKey[]).map((pos) => {
                 const suffix = posSuffix(pos)
                 const shownName = current?.print?.[pos]?.fileName ?? ''
-                const locked = ((current?.productTabId === 4 || current?.productTabId === 5) && pos === 'p3') || 
-                 ((current?.productTabId === 6 || current?.productTabId === 7) && (pos === 'p2' || pos === 'p3'))
+                const locked = ((current?.productTabId === 4 || current?.productTabId === 5) && pos === 'p3') ||
+                 ((current?.productTabId === 6 || current?.productTabId === 7) && (pos === 'p2' || pos === 'p3')) ||
+                 (current?.productTabId === 9 && pos !== 'p1')
                 return (
                   <div key={pos} style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingBottom: '10px', borderBottom: '1px solid #f0f0f0' }}>
                     <div style={{ fontSize: '12px', color: '#333', fontWeight: 600 }}>位置{suffix}</div>

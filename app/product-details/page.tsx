@@ -264,6 +264,48 @@ S / M / L / XL / XXL
 ※商品寸法は手作業で採寸しているため、1〜2cm程度の個体差が生じる場合がございます。予めご了承ください。
 ■ 注意事項
 ※ご覧いただくモニター環境や光の加減により、掲載画像と実際の商品で色味が若干異なる場合がございます。`,
+  9: `【オーダーメイド】とろける極上肌触り プレミアム フランネルブランケット
+【コンセプト】
+世界にひとつだけの特別な一枚を。
+とろけるような極上の肌触りと、大切な想い出を包み込むプレミアムブランケット。
+お気に入りの写真やイラスト、大切なペット、家族の思い出の瞬間をそのまま鮮やかなブランケットに。極細マイクロファイバーを高密度に織り上げたプレミアムフランネル生地を使用し、ずっと触れていたくなる至福のやわらかさと機能性を両立しました。ご自宅用にはもちろん、大切な方へのギフトや記念品としても最適です。
+
+【CUSTOM ORDER】
+■ 世界にたった一つ、あなただけのオリジナル（オーダーメイド）
+思い出の写真やお気に入りのデザインで、1枚から特別なお品をお作りいただけます。
+・ペットの写真：愛犬・愛猫のかわいい姿をそのまま高精細にプリント。
+・思い出の写真：ご家族写真、お子様の成長記録、旅行の記念ショットに。
+・イラスト・デザイン：自作のイラストやグラフィック、オシャレな柄（南国リゾート・フラミンゴ柄など）の再現に。
+・ロゴ・企業：チームグッズ、ショップノベルティ、企業ノベルティにも幅広く対応。
+
+【DETAIL】
+■ 素材＆肌触り（FABRIC & TOUCH）
+・とろける極上の肌触り：極細マイクロファイバーを採用した高密度フランネル生地。シルクのように滑らかで、うっとりするようななめらかなタッチを実現しました。
+・優れた保温性と通気性：体温の温もりをしっかり抱え込みながらも通気性に優れ、蒸れにくくオールシーズン快適にお使いいただけます。
+■ 機能性＆使いやすさ（FUNCTION）
+・ふんわり軽量設計：しっかり暖かいのに羽織っても重さを感じない軽やかな使い心地。長時間の使用でも負担になりません。
+・ご自宅で丸洗いOK（ウォッシャブル）：ご家庭の洗濯機で気軽に丸洗い（ネット使用）が可能。毛羽立ちにくく、いつでも清潔・衛生的に保てます。
+■ 幅広い使用シーン（SCENE）
+オフィスでのひざ掛け、リビングのソファカバー、ベッドインナーケット、車内での防寒、お子様のお昼寝ケット、アウトドアまで、日常のあらゆるシーンでマルチに活躍します。
+
+【SIZE & SPEC】
+■ サイズ展開（SIZE VARIATION）
+用途に合わせて選べる4つのサイズをご用意いたしました。
+・76 × 102cm：ベビーケット / ペット用 / コンパクトなひざ掛けに
+・102 × 127cm：オフィスや車内でのひざ掛け / お子様のお昼寝用に
+・127 × 152cm：ソファでのリラックスタイム / 肩掛け / シングル膝掛けに
+・152 × 203cm：ベッドの毛布代わりに / 大判ソファカバー / ご家族でのご使用に
+■ 基本情報
+・素材：ポリエステル100％（高密度マイクロファイバーフランネル）
+・季節：オールシーズン（春・夏・秋・冬）
+・生産国：中国
+
+【INFORMATION & NOTICE】
+■ 注意事項
+※製造工程上、製品サイズに約1〜3cm程度の誤差が生じる場合がございます。予めご了承ください。
+※お届け時は品質保持のため圧縮梱包でお届けいたします。開封直後は多少のシワが見られる場合がありますが、ご使用や洗うことで自然に復元し、ふんわりとした風合いになります。
+※ご覧いただくモニター環境や光の加減により、掲載画像と実際の商品で色味が多少異なる場合がございます。
+※製造ロットにより、色味や細部の仕様が若干異なる場合がございます。`,
 }
 
 // 与 page.tsx 中 6 个商品分类对应的选项卡数据
@@ -366,10 +408,22 @@ const PRODUCT_TABS: ProductTab[] = [
     },
     bottomImage: '/09duant02/001/01/01.jpg',
   },
+  {
+    id: 9,
+    name: 'ブランケット',
+    colors: ['写真', 'ペット', 'イラスト', 'ロゴ·企業'],
+    imagesByColor: {
+      写真: ['/10tan/001/01/01.png', '/10tan/001/01/02.png', '/10tan/001/01/03.png', '/10tan/001/01/04.png', '/10tan/001/01/05.png', '/10tan/001/01/06.png'],
+      ペット: ['/10tan/001/02/01.png', '/10tan/001/02/02.png', '/10tan/001/02/03.png', '/10tan/001/02/04.png', '/10tan/001/02/05.png', '/10tan/001/02/06.png'],
+      イラスト: ['/10tan/001/03/01.png', '/10tan/001/03/02.png', '/10tan/001/03/03.png', '/10tan/001/03/04.png', '/10tan/001/03/05.png', '/10tan/001/03/06.png'],
+      'ロゴ·企業': ['/10tan/001/04/01.png', '/10tan/001/04/02.png', '/10tan/001/04/03.png', '/10tan/001/04/04.png', '/10tan/001/04/05.png', '/10tan/001/04/06.png'],
+    },
+    bottomImage: '/10tan/t1.png',
+  },
 ]
 
-// 选项卡显示顺序：第9商品（id 8）排第一，其余按原编号
-const DISPLAY_ORDER = [8, 0, 1, 2, 3, 4, 5, 6, 7]
+// 选项卡显示顺序：第9商品（id 8）排第一，其余按原编号，新商品放最后
+const DISPLAY_ORDER = [8, 0, 1, 2, 3, 4, 5, 6, 7, 9]
 
 function ProductDetailsContent() {
   const searchParams = useSearchParams()
@@ -398,14 +452,15 @@ function ProductDetailsContent() {
     6: { base: '/07bao1/001', colorCount: 1, chima: '/07bao1/001/chima.jpg' },
     7: { base: '/08bao2/001', colorCount: 1, chima: '/08bao2/001/chima.jpg' },
     8: { base: '/09duant02/001', colorCount: 2, chima: '/09duant02/001/chima.png', ext: 'jpg' },
+    9: { base: '/10tan/001', colorCount: 4, chima: '/10tan/001/chima.png' },
   }
   const layoutCfg = NEW_LAYOUT[activeTab]
   const layoutColors = PRODUCT_TABS[activeTab].colors.slice(0, layoutCfg.colorCount)
   const layoutColorIdx = Math.max(0, layoutColors.indexOf(selectedColor))
-  const layoutFolder = String(layoutColorIdx + 1).padStart(2, '0')
+  const layoutFolder = activeTab === 9 ? '01' : String(layoutColorIdx + 1).padStart(2, '0')
   const layoutSizes = getCatalogProduct(activeTab).sizes
   const pad2 = (n: number) => String(n).padStart(2, '0')
-  const categoryLabel = activeTab === 6 || activeTab === 7 ? 'TOTE BAG' : 'T-SHIRTS'
+  const categoryLabel = activeTab === 6 || activeTab === 7 ? 'TOTE BAG' : activeTab === 9 ? 'BLANKET' : 'T-SHIRTS'
 
   // 切换商品时，尺寸回到该商品的第一个尺码，颜色回到该商品新布局的第一个颜色
   useEffect(() => {
@@ -477,6 +532,13 @@ function ProductDetailsContent() {
                     src={`${layoutCfg.base}/${layoutFolder}/0${n}.${layoutCfg.ext ?? 'png'}`}
                     alt={`${product.name} ${selectedColor} ${n}`}
                     style={{ width: '100%', height: 'auto', display: 'block' }}
+                    onError={(e) => {
+                      const el = e.currentTarget
+                      if (!el.dataset.fbk) {
+                        el.dataset.fbk = '1'
+                        el.src = `${layoutCfg.base}/01/0${n}.${layoutCfg.ext ?? 'png'}`
+                      }
+                    }}
                   />
                 ))}
               </div>
@@ -512,11 +574,19 @@ function ProductDetailsContent() {
                     {isDescriptionExpanded ? '表示を戻す' : '全文を表示'}
                   </button>
                 </div>
-                {/* 颜色 */}
-                <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>カラー</div>
-                <div className="r-wrap-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                {/* 颜色：商品10锁死不可点，四个名称全显示在图标下方 */}
+                <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>{activeTab === 9 ? 'あなただけのオリジナルデザイン' : 'カラー'}</div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
                   {layoutColors.map((color, idx) => {
                     const sw = String(idx + 1).padStart(2, '0')
+                    if (activeTab === 9) {
+                      return (
+                        <div key={color} style={{ width: '52px' }}>
+                          <img src={`${layoutCfg.base}/inc/${sw}.png`} alt={color} style={{ width: '100%', height: '52px', objectFit: 'cover', display: 'block' }} />
+                          <div style={{ fontSize: '11px', color: '#111', textAlign: 'center', marginTop: '4px' }}>{color}</div>
+                        </div>
+                      )
+                    }
                     return (
                       <button
                         key={color}
@@ -537,7 +607,9 @@ function ProductDetailsContent() {
                     )
                   })}
                 </div>
-                <div style={{ fontSize: '13px', color: '#111', marginTop: '8px' }}>{selectedColor}</div>
+                {activeTab !== 9 && (
+                  <div style={{ fontSize: '13px', color: '#111', marginTop: '8px' }}>{selectedColor}</div>
+                )}
                 {/* 尺寸 */}
                 <div style={{ fontSize: '12px', color: '#333', marginTop: '20px' }}>サイズ</div>
                 <div className="r-wrap-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>

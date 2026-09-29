@@ -228,6 +228,57 @@ export default function Home() {
               </div>
               </div>
             </div>
+            {/* 13-14组：左下 */}
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#F1F4F3', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>07</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>トートバッグ</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    タフに使える、12オンスの重磅キャンバス。
+                    <br />
+                    洗練されたミニマルフォルムが日常に溶け込む、万能キャンバストート。
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ marginBottom: '8px' }}>
+                    <Link href="/product-details?tab=6" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                      ①商品をすべて見る →
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-details?tab=7" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                      ②商品をすべて見る →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-7.png" alt="14" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </div>
+            {/* 15-16组：右下 */}
+            <div className="r-cell-pair" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#D3D3D7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '14px', color: '#333', marginBottom: '8px' }}>08</div>
+                  <div style={{ height: '16px' }} />
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '8px' }}>ブランケット</div>
+                  <div style={{ fontSize: '12px', color: '#333', lineHeight: 1.7 }}>
+                    世界にひとつだけの特別な一枚を。
+                    <br />
+                    とろける極上肌触り プレミアム フランネルブランケット
+                  </div>
+                  <div style={{ height: '16px' }} />
+                  <Link href="/product-details?tab=9" style={{ fontSize: '13px', color: '#111', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+                    商品をすべて見る →
+                  </Link>
+                </div>
+              </div>
+              <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', backgroundColor: '#fff' }}>
+                <img src="/img/0-8.png" alt="16" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </div>
           </div>
         </div>
       </section>

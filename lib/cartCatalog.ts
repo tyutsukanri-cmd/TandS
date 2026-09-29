@@ -105,6 +105,18 @@ export const CART_CATALOG: CartCatalogProduct[] = [
     },
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
   },
+  {
+    tabId: 9,
+    name: 'ブランケット',
+    colors: ['写真', 'ペット', 'イラスト', 'ロゴ·企業'],
+    imagesByColor: {
+      写真: ['/10tan/001/01/01.png', '/10tan/001/01/02.png', '/10tan/001/01/03.png', '/10tan/001/01/04.png', '/10tan/001/01/05.png', '/10tan/001/01/06.png'],
+      ペット: ['/10tan/001/02/01.png', '/10tan/001/02/02.png', '/10tan/001/02/03.png', '/10tan/001/02/04.png', '/10tan/001/02/05.png', '/10tan/001/02/06.png'],
+      イラスト: ['/10tan/001/03/01.png', '/10tan/001/03/02.png', '/10tan/001/03/03.png', '/10tan/001/03/04.png', '/10tan/001/03/05.png', '/10tan/001/03/06.png'],
+      'ロゴ·企業': ['/10tan/001/04/01.png', '/10tan/001/04/02.png', '/10tan/001/04/03.png', '/10tan/001/04/04.png', '/10tan/001/04/05.png', '/10tan/001/04/06.png'],
+    },
+    sizes: ['01', '02', '03', '04'],
+  },
 ]
 
 export function getCatalogProduct(tabId: number) {

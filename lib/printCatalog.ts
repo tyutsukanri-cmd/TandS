@@ -79,6 +79,11 @@ export function getPrintBaseImages(tabId: number, color: string) {
     return fallback
   }
 
+  // 10) ブランケット public/10tan（只印一面，正反用同一底图）
+  if (tabId === 9) {
+    return { left: '/10tan/t1.png', right: '/10tan/t1.png' }
+  }
+
   return fallback
 }
 
