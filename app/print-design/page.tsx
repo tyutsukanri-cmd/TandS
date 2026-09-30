@@ -349,8 +349,10 @@ export default function PrintDesignPage() {
                   overflow: 'hidden',
                 }}
               >
-                {current?.productTabId === 9 ? (
-                  <Image src="/10tan/shuoming1.png" alt="shuoming1" fill style={{ objectFit: 'contain' }} />
+                {current?.productTabId === 6 || current?.productTabId === 7 ? (
+                  <Image src="/images/bao1.png" alt="bao1" fill style={{ objectFit: 'contain' }} />
+                ) : current?.productTabId === 9 ? (
+                  <Image src="/images/tan1.png" alt="tan1" fill style={{ objectFit: 'contain' }} />
                 ) : (
                   <Image src="/images/weizhi1.png" alt="weizhi1" fill style={{ objectFit: 'contain' }} />
                 )}
@@ -366,7 +368,11 @@ export default function PrintDesignPage() {
                   overflow: 'hidden',
                 }}
               >
-                {current?.productTabId === 9 ? null : (
+                {current?.productTabId === 6 || current?.productTabId === 7 ? (
+                  <Image src="/images/bao2.png" alt="bao2" fill style={{ objectFit: 'contain' }} />
+                ) : current?.productTabId === 9 ? (
+                  <Image src="/images/tan2.png" alt="tan2" fill style={{ objectFit: 'contain' }} />
+                ) : (
                   <Image src="/images/weizhi2.png" alt="weizhi2" fill style={{ objectFit: 'contain' }} />
                 )}
               </div>
